@@ -1,0 +1,13 @@
+/* CSS declarations go here */
+.navbar, .navbar-default{
+	background-color: #5bc0de;
+}
+.jumbotron{
+	background-color: #fff;	
+	border:1px solid  #5bc0de;
+}
+.right{
+	float:right;
+	margin-right: 5%;
+	
+}
