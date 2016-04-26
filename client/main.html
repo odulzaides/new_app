@@ -9,6 +9,26 @@
             <div class="col-lg-12">
                 <label for="add-task">Add Task </label>
                 <button type="button" class="label label-info js-add-task-form " id="add-task"><span class="glyphicon glyphicon-plus"></span></button>
+                <label for="priority_sorter">Sort by Priority</label>
+                <select name="priority_sorter" id="">
+                                    <option value="">All Tasks</option>
+
+                    <option value="">Low</option>
+                    <option value="">Medium</option>
+                    <option value="">High</option>
+                    <option value="">Completed</option>
+                </select>
+
+                <label for="priority_sorter">Sort by Age</label>
+                <select name="priority_sorter" id="">
+                    <option value="">All Tasks</option>
+                    <option value="">Older Than 2 Weeks</option>
+                    <option value="">Older Than 1 month</option>
+                    <option value="">Due Today</option>
+                    <option value="">Due in a Week</option>
+                    <option value="">Long Term</option>
+
+                </select>
                 {{> add_task}}
             </div>
         </div>
@@ -22,3 +42,4 @@
         </div>
     </div>
 </body>
+
