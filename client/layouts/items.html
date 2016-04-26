@@ -5,12 +5,16 @@
 </template>
 <template name="item">
     <li>
-        <div class="">
-            <span class="label label-info date-formatted">{{formatDate created}} </span> {{task}}
-            <!-- Checkbox -->
-            <span class="label label-info date-formatted">{{formatDate created}} </span>
-            
-            <label for="checked" >Completed</label>
+        <div>
+            <!-- <span class="label label-info date-formatted">{{formatDate created}} </span>  -->
+            {{task}}
+            {{due}}
+
+             <!-- 
+                          ##      TODO - Style to give CSS different colors depending on priority
+                             -->
+            {{priority}}
+            <!-- Checkbox -->            
             <input id="checked" type="checkbox" >
             <button type="button" class="label label-info    js-delete-task"><span class="glyphicon glyphicon-trash"></span></button>
         </div>

@@ -11,3 +11,16 @@
 	margin-right: 5%;
 	
 }
+.item{
+	margin-left:3em;
+}
+.low{
+	background:green;
+}
+.medium{
+	background-color: yellow;
+}
+.high{
+	background-color: red;
+	color:#ffffff;
+}

@@ -1,8 +1,9 @@
 <template name="add_task">
- <!-- <label for="add-task">Add Task </label>
+    <!-- <label for="add-task">Add Task </label>
                 <button type="button" class="label label-info js-add-task-form " id="add-task"><span class="glyphicon glyphicon-plus"></span></button> -->
-
-                
+    <!--
+       Modal 
+-->
     <div class="modal fade" id="task_add_form">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -14,6 +15,14 @@
                     <form class="form form-inline js-emoticon">
                         <div class="form-group ">
                             <input type="text" class="form-control" id="text" placeholder="Input field">
+                            <!-- »»»»»»»»Datepicker »»»»»»»»»»» -->
+                            <input type="text" class="form-control" id="my-datepicker" placeholder="Due date...">
+                            <!-- »»»»»»»» Priority Dropdown »»»»»»»»»»» -->
+                            <select name="" id="priority">
+                                <option value="Low Priority">Low Priority</option>
+                                <option value="Medium Priority">Medium Priority</option>
+                                <option value="High Priority">High Priority</option>
+                            </select>
                         </div>
                         <button type="submit" class="label label-info js-add-task " id="add-task"><span class="glyphicon glyphicon-plus"></span></button>
                     </form>
@@ -24,4 +33,23 @@
             </div>
         </div>
     </div>
+    <!-- »»»»»  Join or Login Message ««««««««««« -->
+    <div class="modal fade" id="join_or_login">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-title">
+                    </div>
+                </div>
+                <div class="modal-body">
+                Create an account or login to create tasks
+                   
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-warning" data-dismiss="modal">cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
+
