@@ -1,9 +1,7 @@
 <template name="add_task">
-    <!-- <label for="add-task">Add Task </label>
-                <button type="button" class="label label-info js-add-task-form " id="add-task"><span class="glyphicon glyphicon-plus"></span></button> -->
-    <!--
-       Modal 
--->
+  
+
+<!-- »»»»»»»»»»»»»» Add Task Modal «««««««««««««««««« -->
     <div class="modal fade" id="task_add_form">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -12,27 +10,34 @@
                     </div>
                 </div>
                 <div class="modal-body">
-                    <form class="form form-inline js-emoticon">
+                    <form class="form form-inline js-add-task">
                         <div class="form-group ">
-                            <input type="text" class="form-control" id="text" placeholder="Input field">
+                            <input type="text" class="form-control" id="text" placeholder="Enter task...">
                             <!-- »»»»»»»»Datepicker »»»»»»»»»»» -->
                             <input type="text" class="form-control" id="my-datepicker" placeholder="Due date...">
                             <!-- »»»»»»»» Priority Dropdown »»»»»»»»»»» -->
                             <select name="" id="priority">
-                                <option value="Low Priority">Low Priority</option>
-                                <option value="Medium Priority">Medium Priority</option>
-                                <option value="High Priority">High Priority</option>
+                                <option value="Low">Low Priority</option>
+                                <option value="Medium">Medium Priority</option>
+                                <option value="High">High Priority</option>
                             </select>
                         </div>
-                        <button type="submit" class="label label-info js-add-task " id="add-task"><span class="glyphicon glyphicon-plus"></span></button>
+                        <div>
+                         <!-- »»» Notes field ««««« -->
+                            <textarea name="notes" id="notes" cols="50" rows="7"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-info" id="add-task">Add Task</button>
+                        
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-warning" data-dismiss="modal">cancel</button>
+               
+                    <button class="btn btn-warning " data-dismiss="modal">cancel</button>
                 </div>
             </div>
         </div>
     </div>
+
     <!-- »»»»»  Join or Login Message ««««««««««« -->
     <div class="modal fade" id="join_or_login">
         <div class="modal-dialog">
@@ -42,10 +47,50 @@
                     </div>
                 </div>
                 <div class="modal-body">
-                Create an account or login to create tasks
+                Create an account or login to create or edit tasks
                    
                 </div>
                 <div class="modal-footer">
+                    <button class="btn btn-warning" data-dismiss="modal">cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- »»»»»»»»»» Update Modal «««««««««««« -->
+    <div class="modal fade" id="task_update_form">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header brand-color">
+                    <div class="modal-title">
+                    <h3 >Update Task</h3>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <form class="form form-inline js-update-task">
+                    {{#each update}}
+                        <div class="form-group ">
+                            <input type="text" class="form-control" id="text" value= "{{task}}">
+                            <!-- »»»»»»»»Datepicker »»»»»»»»»»» -->
+                            <!-- TODO: Fix 'datepicker' id it is not showing up as datepicker -->
+                            <input type="text" class="form-control" id="my-datepicker" value="{{due}}">
+                            <!-- »»»»»»»» Priority Dropdown »»»»»»»»»»» -->
+                            <select value="{{priority}}" name="" id="priority">
+                                <option value="Low">Low</option>
+                                <option value="Medium">Medium</option>
+                                <option value="High">High</option>
+                            </select>
+                        </div>
+                        <div class="">
+                            <textarea  value="{{notes}}" name="notes" id="notes" cols="50" rows="7"></textarea>
+                        </div>
+                        {{/each}}
+                        <!-- »»» Notes field ««««« -->
+                        <button type="submit" class="btn btn-info brand-color js-submit-update-task " id="add-task">UpdateTask</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                
                     <button class="btn btn-warning" data-dismiss="modal">cancel</button>
                 </div>
             </div>

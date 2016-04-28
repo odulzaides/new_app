@@ -5,16 +5,18 @@
 </template>
 <template name="item">
     <li>
+        <a href="#" class="js-update-task-form">
         <div>
-           
-            <input id="checked" type="checkbox" >
-            {{task}}
-            {{due}}
-
-            {{priority}}
-            <!-- Checkbox -->            
+               
+                <input id="checked" type="checkbox" >
+                {{task}}
+                {{due}}
             
-            <button type="button" class="label label-info    js-delete-task"><span class="glyphicon glyphicon-trash"></span></button>
-        </div>
+                <span class="label label-info {{priority}}" id="">{{priority}}</span>
+                <!-- Checkbox -->            
+                
+                <button type="button" class="label label-info    js-delete-task"><span class="glyphicon glyphicon-trash"></span></button>
+            </div>
+            </a>
     </li>
 </template>

@@ -1,6 +1,13 @@
 /* CSS declarations go here */
+body{
+	color:#777;
+}
 .navbar, .navbar-default{
 	background-color: #5bc0de;
+}
+.brand-color{
+	background-color: #5bc0de;
+	color:#777;
 }
 .jumbotron{
 	background-color: #fff;	
@@ -14,13 +21,18 @@
 .item{
 	margin-left:3em;
 }
-.low{
-	background:green;
+/* TODO: Colors need to be adjusted in theses 3 selectors in order to match the Aqua of the site */
+.Low{
+	background-color:green;
 }
-.medium{
+.Medium{
 	background-color: yellow;
+	color:black;
 }
-.high{
+.High{
 	background-color: red;
 	color:#ffffff;
+}
+.btn-add{
+	background-color: #5bc0de;
 }
