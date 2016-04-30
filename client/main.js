@@ -11,17 +11,28 @@ Template.registerHelper('formatDate', function(date) {
 
 });
 Template.add_task.rendered = function() {
-    $('#my-datepicker').datepicker();
+    $('#my-datepicker').datepicker({
+        format: "dd/mm"
+    });  
 }
 
 /// //// //
 ////    Template Helpers
 /// //// //
+
+// Template.body.helpers({
+//   getUser:function(){
+//     return Meteor.user();
+//   }
+// });
 Template.item_list.helpers({
     items: function() {
         return Items.find();
 
-    }
+    },
+    getUser:function(){
+    return Meteor.user();
+  }
 });
 Template.add_task.helpers({
     update: function() {

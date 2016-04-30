@@ -1,22 +1,32 @@
+<!-- 
+        Item List
+ -->
 <template name="item_list">
-    <ol>
-        {{#each items}} {{> item}} {{/each}}
-    </ol>
+    <div class="jumbotrons">
+        <h4 calss="display-6">Todo List for {{getUser.username}}</h4>
+        <div class="row">
+            <div class="col-lg-6 col-sm-12">
+                <ol>
+                    {{#each items}} {{> item}} {{/each}}
+                </ol>
+            </div>
+        </div>
+    </div>
 </template>
+<!-- 
+        Item Template
+ -->
 <template name="item">
     <li>
-        <a href="#" class="js-update-task-form">
-        <div>
-               
-                <input id="checked" type="checkbox" >
-                {{task}}
-                {{due}}
-            
-                <span class="label label-info {{priority}}" id="">{{priority}}</span>
-                <!-- Checkbox -->            
-                
-                <button type="button" class="label label-info    js-delete-task"><span class="glyphicon glyphicon-trash"></span></button>
-            </div>
+        <div class="items">
+            <input id="checked" type="checkbox">
+            <a href="#" class=" items js-update-task-form">
+                <span class="items ">{{due}} </span> {{task}}
+                <div class="right">
+                    <span class="label label-info items {{priority}}" id="">{{priority}}</span>
+                    <button type="button" class="label label-info items   js-delete-task"><span class="glyphicon glyphicon-trash"></span></button>
+                </div>
             </a>
+        </div>
     </li>
 </template>

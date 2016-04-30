@@ -1,44 +1,19 @@
 <head>
-    <title>simple</title>
+    <title>TaskMate</title>
 </head>
 
 <body>
     {{> navbar}}
     <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <label for="add-task">Add Task </label>
-                <button type="button" class="label label-info js-add-task-form " id="add-task"><span class="glyphicon glyphicon-plus"></span></button>
-                <label for="priority_sorter">Sort by Priority</label>
-                <select name="priority_sorter" id="">
-                    <option value="">All Tasks</option>
-                    <option value="Low">Low</option>
-                    <option value="Medium">Medium</option>
-                    <option value="High">High</option>
-                    <option value="Completed">Completed</option>
-                </select>
-
-                <label for="priority_sorter">Sort by Age</label>
-                <select name="priority_sorter" id="">
-                    <option value="all">All Tasks</option>
-                    <option value="2_weeks">Older Than 2 Weeks</option>
-                    <option value="1_month">Older Than 1 month</option>
-                    <option value="today">Due Today</option>
-                    <option value="in_a_week">Due in a Week</option>
-                    <option value="after_one_month">Long Term</option>
-
-                </select>
+        <!-- <div class="row add-task">
+            <div class="col-lg-12 "> -->
+                
                 {{> add_task}}
-            </div>
-        </div>
-        <div class="jumbotron">
-            <h4 calss="display-6">Todo List</h4>
-            <div class="row">
-                <div class="col-md-8 col-sm-6">
+         <!--    </div>
+        </div> -->
+       
                     {{> item_list}}
-                </div>
-            </div>
-        </div>
+            
     </div>
 </body>
 
