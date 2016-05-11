@@ -23,6 +23,7 @@ session
 ian:accounts-ui-bootstrap-3
 accounts-password
 twbs:bootstrap
-dubvfan87:meteor-css-emoticons
+#dubvfan87:meteor-css-emoticons
 fortawesome:fontawesome
 rajit:bootstrap3-datepicker
+iron:router

@@ -2,6 +2,7 @@
         Item List
  -->
 <template name="item_list">
+    {{> add_task}}
     <div class="jumbotrons">
         <h4 calss="display-6">Todo List for {{getUser.username}}</h4>
         <div class="row">
@@ -12,21 +13,37 @@
             </div>
         </div>
     </div>
+    <!--    TODO - add a section totaling the amount of tasks etc.-->
 </template>
 <!-- 
         Item Template
  -->
 <template name="item">
-    <li>
-        <div class="items">
-            <input id="checked" type="checkbox">
-            <a href="#" class=" items js-update-task-form">
-                <span class="items ">{{due}} </span> {{task}}
-                <div class="right">
-                    <span class="label label-info items {{priority}}" id="">{{priority}}</span>
-                    <button type="button" class="label label-info items   js-delete-task"><span class="glyphicon glyphicon-trash"></span></button>
-                </div>
-            </a>
+    <!-- 
+    FIXME: Styling - try making this a ul with each item a li
+    and use navbar or inline class
+ -->
+    
+    <ul class="">
+        <div class="left">
+            <li>
+                <input class="items" id="checked" type="checkbox">
+            </li>
+            <li>
+                <a href="#" class=" items js-update-task-form">
+                       {{task}}
+               </a>
+            </li>
+          
+            <div class="clear"></div>
         </div>
-    </li>
+        <div class="right ">
+        <li class="items"><span class="label label-info">{{due}}</span></li>
+            <li><span class="label label-info items {{priority}}" id="priority">{{priority}}</span></li>
+            <li>
+                <button type="button" class="label label-info items   js-delete-task"><span class="glyphicon glyphicon-trash"></span></button>
+            </li>
+        </div>
+        <div class="clear"></div>
+    </ul>
 </template>

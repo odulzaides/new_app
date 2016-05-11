@@ -12,30 +12,28 @@ Template.registerHelper('formatDate', function(date) {
 });
 Template.add_task.rendered = function() {
     $('#my-datepicker').datepicker({
-        format: "dd/mm"
-    });  
-}
+        format: "mm/dd"
+    });
+};
 
 /// //// //
 ////    Template Helpers
 /// //// //
-
-// Template.body.helpers({
-//   getUser:function(){
-//     return Meteor.user();
-//   }
-// });
 Template.item_list.helpers({
     items: function() {
+        var priority = $("#priority_sorter").val();
+        console.log(priority);
+        /// TODO find how to make a select event to show only by priority
+
         return Items.find();
 
     },
-    getUser:function(){
-    return Meteor.user();
-  }
+    getUser: function() {
+        return Meteor.user();
+    }
 });
 Template.add_task.helpers({
-    update: function() {
+    update: function() {    
         var id = Session.get('id');
         // console.log(id);
         // console.log(Items.findOne({_id:id}));
@@ -46,7 +44,7 @@ Template.add_task.helpers({
 /// //// ////
 ////    events
 /// //// ////
-Template.body.events({
+Template.layout.events({ // These wer the body events
     'click .js-add-task-form': function(event) {
         if (!Meteor.user()) {
             $("#join_or_login").modal('show');
