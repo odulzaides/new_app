@@ -22,10 +22,22 @@ Template.add_task.rendered = function() {
 Template.item_list.helpers({
     items: function() {
         var priority = $("#priority_sorter").val();
-        console.log(priority);
         /// TODO find how to make a select event to show only by priority
 
-        return Items.find();
+        //return Items.find();
+        var priority_val = Session.get('priority');
+        var user = Meteor.user()._id    ;
+        /// Filter by Priority
+        if (priority_val === ""){
+            console.log("First IF priority set to ", priority_val);
+            return Items.find();
+
+        }else {
+            console.log("Else statement priority value is "+ priority_val+ ". With User ID "+ user);
+
+            return Items.find({owner:user,"priority":priority_val});
+
+        }
 
     },
     getUser: function() {
@@ -60,7 +72,13 @@ Template.layout.events({ // These wer the body events
             Session.set('id', this._id); // /Set Session to clicked task _id
             $("#task_update_form").modal('show');
         }
+    },
+    'change #priority_sorter':function(event, template){
+        console.log("A change detected");
+        Session.set('priority', template.find('#priority_sorter').value);
+        //console.log("Event priority set to "+ Session.get("priority"));
     }
+
 });
 
 Template.add_task.events({
@@ -91,7 +109,7 @@ Template.add_task.events({
 });
 Template.item.events({
     'click .js-delete-task': function() {
-        console.log('clicked');
+        //console.log('clicked');
         var id = this._id;
         Meteor.call("removeTask", id);
     }

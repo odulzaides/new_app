@@ -27,3 +27,4 @@ twbs:bootstrap
 fortawesome:fontawesome
 rajit:bootstrap3-datepicker
 iron:router
+kadira:debug
