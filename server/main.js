@@ -4,8 +4,8 @@
 
 Meteor.startup(() => {
     // code to run on server at startup
-    if (!Items.findOne()) {
-        console.log("Creating records!")
+    if (!Items.findOne()); {
+        console.log("Creating records!");
         Items.insert({
             created: new Date().toLocaleDateString("en-US"),
             task: 'Get milk'
@@ -24,12 +24,9 @@ Meteor.startup(() => {
         });
 
     }
-});
-
+})
 Meteor.publish('Items', function() {
     console.log(this.userId);
     return Items.find({$or:[{owner:this.userId}]});
-
-
 });
 

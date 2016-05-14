@@ -5,7 +5,7 @@
     <a href="#" class=" js-add-task-form " id="add-task">Add New Task</a>
                 <label class="labels" for="priority_sorter">Sort by Priority</label>
                 <select name="priority_sorter" id="priority_sorter" class="add-task">
-                    <option value="">All Tasks</option>
+                    <option value="All Tasks" >All Tasks</option>
                     <option value="Low">Low</option>
                     <option value="Medium">Medium</option>
                     <option value="High">High</option>
@@ -14,7 +14,7 @@
 
                 <label class="labels" for="priority_sorter">Sort by Age</label>
                 <select name="created_sorter" id="">
-                    <option value="all">All Tasks</option>
+                    <option value="All Tasks">All Tasks</option>
                     <option value="2_weeks">Older Than 2 Weeks</option>
                     <option value="1_month">Older Than 1 month</option>
                     <option value="today">Due Today</option>
@@ -94,14 +94,14 @@
                     <form class="form form-inline js-update-task">
                     {{#each update}}
                         <div class="form-group ">
-                            <input type="text" class="form-control" id="text" value= "{{task}}">
+                            <input type="text" class="form-control" id="task" value= "{{task}}">
                             <!-- »»»»»»»»Datepicker »»»»»»»»»»» -->
-                            <!-- FIX: Fix 'datepicker' id it is not showing up as datepicker -->
-                            <input type="text" class="form-control" id="my-datepicker" value="{{due}}">
+                            <input type="text" class="form-control" id="update-datepicker" value="{{due}}">
                             <!-- »»»»»»»» Priority Dropdown »»»»»»»»»»» -->
-                            <select value="{{priority}}" name="" id="priority">
+                            <!--FIXME Set priority in dropdown to -->
+                            <select value="{{priority}}" name="" id="priorityList">
                                 <option value="Low">Low</option>
-                                <option value="Medium">Medium</option>
+                                <option value="Medium" >Medium</option>
                                 <option value="High">High</option>
                             </select>
                         </div>

@@ -25,11 +25,16 @@ body{
 	float:left;
 	margin-right: .8em;
 	margin-left:.2em;
+
 }
 .left li{
 	list-style: none;
 	float:left;
 	display:inline-block;
+
+}
+#checked{
+	margin-right:1em;
 }
 .right{
 	float:right;

@@ -3,8 +3,9 @@
  -->
 <template name="item_list">
     {{> add_task}}
-    <div class="jumbotrons">
-        <h4 calss="display-6">Todo List for {{getUser.username}}</h4>
+    <h4 calss="display-6">Todo List for {{getUser.username}}</h4>
+    <div class="well">
+
         <div class="row">
             <div class="col-lg-6 col-sm-12">
                 <ol>
@@ -39,7 +40,7 @@
         </div>
         <div class="right ">
         <li class="items"><span class="label label-info">{{due}}</span></li>
-            <li><span class="label label-info items {{priority}}" id="priority">{{priority}}</span></li>
+            <li><span class="label label-info items {{priority}}" id="{{priority}}">{{priority}}</span></li>
             <li>
                 <button type="button" class="label label-info items   js-delete-task"><span class="glyphicon glyphicon-trash"></span></button>
             </li>
