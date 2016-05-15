@@ -98,11 +98,11 @@
                             <!-- »»»»»»»»Datepicker »»»»»»»»»»» -->
                             <input type="text" class="form-control" id="update-datepicker" value="{{due}}">
                             <!-- »»»»»»»» Priority Dropdown »»»»»»»»»»» -->
-                            <!--FIXME Set priority in dropdown to -->
-                            <select value="{{priority}}" name="" id="priorityList">
-                                <option value="Low">Low</option>
-                                <option value="Medium" >Medium</option>
-                                <option value="High">High</option>
+                            <!--FIXME Set priority in dropdown to correct setting-->
+                            <select  id="priorityList">
+                                <option value="Low" {{isSelected "Low"}}>Low</option>
+                                <option value="Medium" {{isSelected "Medium"}}>Medium</option>
+                                <option value="High" {{isSelected "High"}}>High</option>
                             </select>
                         </div>
                         <div class="">

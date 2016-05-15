@@ -33,7 +33,6 @@ Template.item_list.helpers({
 
         var priority_val = Session.get('priority');
         var user = Meteor.user()._id;
-        console.log('after id ' + user,  priority_val);
         /// Filter by Priority
         if (priority_val === "All Tasks"){
             console.log("First IF priority set to ", priority_val);
@@ -56,9 +55,12 @@ Template.add_task.helpers({
         if(Session.get('id')) {
             var id = Session.get('id');
             var task = Items.find({_id: id});
-            console.log(task);
             return task;
         }
+    },
+    isSelected: function(value){
+        var taskPriority = Items.findOne({_id: Session.get('id')}).priority;
+        return (taskPriority === value) ? 'selected' : '' ;
     }
     //  TODO - Make a helper that sets priority to what the priority is.
 });
@@ -81,7 +83,11 @@ Template.layout.events({ // These were the body events
         } else {
             Session.set('id', this._id); // Set Session to clicked task _id
             $("#task_update_form").modal('show');// Show task to edit in modal
-
+            //var id = Session.get('id');//   task id
+            //var priority = Items.findOne({_id: id});
+            //priority = priority.priority;
+            //console.log("This is PRIORITY "+priority);
+            //$("#priorityList").val(priority).change();// Set priority
         }
     },
     'change #priority_sorter':function(event, template){
