@@ -2,15 +2,35 @@
         Item List
  -->
 <template name="item_list">
-    {{> add_task}}
-    <h4 calss="display-6">Todo List for {{getUser.username}}</h4>
-    <div class="well">
 
-        <div class="row">
-            <div class="col-lg-6 col-sm-12">
-                <ol>
+
+    <div class="container">
+        <h2 class="display-6 ">Todo List for {{getUser.username}}</h2>
+
+        <div class="row top-margin">
+
+            <div class="col-md-2 sorter">
+                <!-- Task sorter -->
+                {{> add_task}}
+            </div>
+            <!-- todo items list -->
+            <div class="col-md-6 col-sm-12 ">
+
+                <h3>Todo List</h3>
+                <ul id="item-list">
                     {{#each items}} {{> item}} {{/each}}
-                </ol>
+                </ul>
+                <button class="btn btn-brand add-btn js-add-task-form"><a href="#" class="  " id="add-task"><span
+                        class="glyphicon glyphicon-plus"></span></a></button>
+
+            </div>
+            <div class="col-md-3 right-side">
+                <h4>Task Info</h4>
+                <ul>
+                    <li><a href="#">Add Task List</a></li>
+
+                    <li><a href="#">Add Task</a></li>
+                </ul>
             </div>
         </div>
     </div>
@@ -20,31 +40,28 @@
         Item Template
  -->
 <template name="item">
-    <!-- 
-    FIXME: Styling - try making this a ul with each item a li
-    and use navbar or inline class
- -->
-    
-    <ul class="">
-        <div class="left">
+    <div class="left" style="border-bottom:1px solid lightslategray;border-radius:.2em;">
+        <div class="left"><!--left-->
             <li>
                 <input class="items" id="checked" type="checkbox">
             </li>
             <li>
                 <a href="#" class=" items js-update-task-form">
-                       {{task}}
-               </a>
+                    {{task}}
+                </a>
             </li>
-          
+
             <div class="clear"></div>
         </div>
-        <div class="right ">
-        <li class="items"><span class="label label-info">{{due}}</span></li>
-            <li><span class="label label-info items {{priority}}" id="{{priority}}">{{priority}}</span></li>
+        <div class=" right  "><!--right-->
+            <li class="items"><span class="label-position due">{{due}}</span></li>
+            <li><span class="label label-info items priority-position {{priority}}"
+                      id="{{priority}}">{{priority}}</span></li>
             <li>
-                <button type="button" class="label label-info items   js-delete-task"><span class="glyphicon glyphicon-trash"></span></button>
+                <button type="button" class="label label-info  trash js-delete-task"><span
+                        class="glyphicon glyphicon-remove"></span></button>
             </li>
         </div>
         <div class="clear"></div>
-    </ul>
+    </div>
 </template>

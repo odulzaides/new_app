@@ -1,31 +1,31 @@
 <template name="add_task">
-<!-- <label for="add-task">Add Task </label>Add New Task</templat -->
-<div class="row add-task">
-            <div class="col-lg-12 ">
-    <a href="#" class=" js-add-task-form " id="add-task">Add New Task</a>
-                <label class="labels" for="priority_sorter">Sort by Priority</label>
-                <select name="priority_sorter" id="priority_sorter" class="add-task">
-                    <option value="All Tasks" >All Tasks</option>
-                    <option value="Low">Low</option>
-                    <option value="Medium">Medium</option>
-                    <option value="High">High</option>
-                    <option value="Completed">Completed</option>
-                </select>
 
-                <label class="labels" for="priority_sorter">Sort by Age</label>
-                <select name="created_sorter" id="">
-                    <option value="All Tasks">All Tasks</option>
-                    <option value="2_weeks">Older Than 2 Weeks</option>
-                    <option value="1_month">Older Than 1 month</option>
-                    <option value="today">Due Today</option>
-                    <option value="in_a_week">Due in a Week</option>
-                    <option value="after_one_month">Long Term</option>
+    <div class="task_actions">
+        <!--<button class="btn "><a href="#" class=" js-add-task-form " id="add-task">Add New Task</a></button>-->
+        <br/><br/><br/>
+        <label class="labels" for="priority_sorter">Sort by Priority</label><br/>
+        <select name="priority_sorter" id="priority_sorter" class="add-task">
+            <option value="All Tasks">All Tasks</option>
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+            <option value="Completed">Completed</option>
+        </select><br/><br/><br/>
 
-                </select>
-                   </div>
-        </div>
+        <label class="labels" for="priority_sorter">Sort by Age</label><br/>
+        <select name="created_sorter" id="">
+            <option value="All Tasks">All Tasks</option>
+            <option value="2_weeks">Older Than 2 Weeks</option>
+            <option value="1_month">Older Than 1 month</option>
+            <option value="today">Due Today</option>
+            <option value="in_a_week">Due in a Week</option>
+            <option value="after_one_month">Long Term</option>
 
-<!-- »»»»»»»»»»»»»» Add Task Modal ««««««««««««« -->
+        </select>
+    </div>
+
+
+    <!-- »»»»»»»»»»»»»» Add Task Modal ««««««««««««« -->
     <div class="modal fade" id="task_add_form">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -47,15 +47,15 @@
                             </select>
                         </div>
                         <div>
-                         <!-- »»» Notes field ««««« -->
+                            <!-- »»» Notes field ««««« -->
                             <textarea name="notes" id="notes" cols="50" rows="7"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-info" id="add-task">Add Task</button>
-                        
+                        <button type="submit" class="btn btn-brand " id="add-task">Add Task</button>
+
                     </form>
                 </div>
                 <div class="modal-footer">
-               
+
                     <button class="btn btn-warning " data-dismiss="modal">cancel</button>
                 </div>
             </div>
@@ -71,8 +71,8 @@
                     </div>
                 </div>
                 <div class="modal-body">
-                Create an account or login to create or edit tasks
-                   
+                    Create an account or login to create or edit tasks
+
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-warning" data-dismiss="modal">cancel</button>
@@ -87,34 +87,37 @@
             <div class="modal-content">
                 <div class="modal-header brand-color">
                     <div class="modal-title">
-                    <h3 >Update Task</h3>
+                        <h3>Update Task</h3>
                     </div>
                 </div>
                 <div class="modal-body">
                     <form class="form form-inline js-update-task">
-                    {{#each update}}
-                        <div class="form-group ">
-                            <input type="text" class="form-control" id="task" value= "{{task}}">
-                            <!-- »»»»»»»»Datepicker »»»»»»»»»»» -->
-                            <input type="text" class="form-control" id="update-datepicker" value="{{due}}">
-                            <!-- »»»»»»»» Priority Dropdown »»»»»»»»»»» -->
-                            <!--FIXME Set priority in dropdown to correct setting-->
-                            <select  id="priorityList">
-                                <option value="Low" {{isSelected "Low"}}>Low</option>
-                                <option value="Medium" {{isSelected "Medium"}}>Medium</option>
-                                <option value="High" {{isSelected "High"}}>High</option>
-                            </select>
-                        </div>
-                        <div class="">
-                            <textarea  value="{{notes}}" name="notes" id="notes" cols="50" rows="7"></textarea>
-                        </div>
+                        {{#each update}}
+                            <div class="form-group ">
+                                <input type="text" class="form-control" id="task" value="{{task}}">
+
+                                <!-- »»»»»»»»Datepicker »»»»»»»»»»» -->
+                                <input type="text" class="form-control  " id="update-datepicker" value="{{due}}">
+
+                                <!-- »»»»»»»» Priority Dropdown »»»»»»»»»»» -->
+                                <select id="priorityList">
+                                    <option value="Low" {{isSelected "Low"}}>Low</option>
+                                    <option value="Medium" {{isSelected "Medium"}}>Medium</option>
+                                    <option value="High" {{isSelected "High"}}>High</option>
+                                </select>
+                            </div>
+                            <div class="">
+                                <textarea value="{{notes}}" name="notes" id="notes" cols="50" rows="7"></textarea>
+                            </div>
                         {{/each}}
                         <!-- »»» Notes field ««««« -->
-                        <button type="submit" class="btn btn-info brand-color js-submit-update-task " id="add-task">UpdateTask</button>
+                        <button type="submit" class="btn btn-brand js-submit-update-task " id="add-task">
+                            UpdateTask
+                        </button>
                     </form>
                 </div>
                 <div class="modal-footer">
-                
+
                     <button class="btn btn-warning" data-dismiss="modal">cancel</button>
                 </div>
             </div>

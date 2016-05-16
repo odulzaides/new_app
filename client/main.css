@@ -1,74 +1,131 @@
 /* CSS declarations go here */
 body{
-	color:#777;
+	color:rgba(0,102,0,0.4);
+	background:white;
 }
-.navbar, .navbar-default{
-	background-color: #5bc0de;
+a, .due, input, textarea {
+	color:rgba(148,148,148,1);
+}
+
+/*	FIXME - Change button selecton to */
+.navbar, .navbar-default, .btn-brand {
+	background-color: rgba(0,102,0,0.4);
+
 }
 .brand-color{
-	background-color: #5bc0de;
-	color:#777;
+	background-color: rgba(0,102,0,0.4);
+	color:rgba(0,102,0,0.4);
 }
-.jumbotrons{
-	background-color: #fff;	
-	/* border:1px solid  #5bc0de; */
-	padding: 2em 3em .3em .3em;
+.top-margin{
+	margin-top:4em;
 }
-.add-task{
-	padding: 2em 3em .3em .3em;
+
+/* Sorter */
+.sorter{
+	/*border-right:1px solid black;*/
+	/*mask-border-outset: 10;*/
+	height:100%;
+	margin-right:5%;
 }
-.labels{
-	padding-left:2.5em;
-	padding-right: .1em;
+select{
+	/*background-color: rgba(0,102,0,0.4);*/
+	box-shadow: 0 0 10px 100px #fff inset;
+}
+select option:hover{
+	/*background-color: rgba(0,102,0,0.4);*/
+	box-shadow: 0 0 10px 100px #fff inset;
+}
+
+/*
+	items section
+*/
+.item{
+	line-height:1.5;
+}
+#item-list{
+	padding-left:0;
 }
 .left{
-	float:left;
-	margin-right: .8em;
+	display:flex;
+	flex-direction: row;
+	margin-right: .5em;
 	margin-left:.2em;
-
+	overflow:hidden;
+	text-indent: 0;
 }
 .left li{
 	list-style: none;
-	float:left;
-	display:inline-block;
-
+	text-align: left;
 }
 #checked{
 	margin-right:1em;
 }
 .right{
 	float:right;
-	padding-right: .8em;
-	padding-left:.2em;
+	display:flex;
+	flex-direction: row;
+	padding-right: 1em;
+	padding-left:.4em;
+	margin-right:1em;
 	margin-left:.2em;
-	
+	text-align: right;
+	position:absolute;
+	right:-15%;
+	width:40%;
+
 }
 .right li{
-	list-style: none;
-	float:left;
+	display:flex;
+	flex-direction: row;
 	display:inline-block;
 	margin-left:.2em;
 }
-.clear{
-	clear:both;
+.label-position, .priority-position{
+	margin-right:.9em;
 }
-.items{
-	/* padding:.2em .2em .2em .2em; */
-	/* margin-left:3em; */
-	/* line-height: .8; */
+.right-side{
+	padding-left:10%;
+	padding-top:2%;
 }
-/* TODO: Colors need to be adjusted in theses 3 selectors in order to match the Aqua of the site */
+.add-btn{
+	margin-top:1em;
+	border-radius:45%;
+	background-image: none !important;
+	backgrrightound-color: white !important;
+	border:1px solid rgba(0,102,0,0.4);
+}
+/*	Priority colors */
 .Low{
-	background-color:green;
+	/*background-color:rgba(0,102,0,0.4);*/
+	background-color: transparent;
+	color:rgba(148,148,148,1);
+	font-weight:400;
 }
 .Medium{
-	background-color: yellow;
-	color:black;
+	/*background-color: rgba(0,102,0,0.7);*/
+	background-color: transparent;
+	color:rgba(148,148,148,1);
+	font-weight:600;
 }
 .High{
-	background-color: red;
-	color:#ffffff;
+	/*background-color: rgba(0,102,0,0.95);*/
+	background-color: transparent;
+	color:rgba(118,118,118,1);
+	font-weight:900;
 }
-.btn-add{
-	background-color: #5bc0de;
+.trash{
+	position:absolute;
+	right:20%;
+	background-color: rgba(0,102,0,0.4);
+	border:1px solid rgba(0,102,0,0.4);
+	border-radius:60%;
+}
+
+/* 	right column */
+.right-side{
+	padding-top:4%;
+}
+.right-side>ul{
+	list-style:none;
+	padding-left:0;
 }
