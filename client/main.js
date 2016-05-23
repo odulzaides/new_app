@@ -26,25 +26,30 @@ Template.add_task.rendered = function() {
 ////    Template Helpers
 /// //// /// //// /// ////
 Template.item_list.helpers({
+    //
     items: function() {
         var priority = $("#priority_sorter").val();
 
-        /// TODO find how to make a select event to show only by priority
+        /// TODO fix so this can be sorted by 'completed' as well
 
         var priority_val = Session.get('priority');
         var user = Meteor.user()._id;
         /// Filter by Priority
-        if (priority_val === "All Tasks"){
-            console.log("First IF priority set to ", priority_val);
+        if (priority_val === "All Tasks") {
+            //console.log("First IF priority set to ", priority_val);
             return Items.find();
 
-        }else {
-            console.log("Else statement priority value is "+ priority_val+ ". With User ID "+ user);
-
-            return Items.find({owner:user,"priority":priority_val},{sort:{"created":-1}});
-
+        } else {
+            //console.log("Else statement priority value is "+ priority_val+ ". With User ID "+ user);
+            return Items.find({owner: user, "priority": priority_val}, {sort: {"created": -1}});
         }
-
+    },
+    isComplete: function(){
+        var task = Items.thisId.checked;
+        if(Items.thisId.checked === 'complete'){
+            console.log("Checked confirmed for "+ task);
+            $('.js-complete').wrap("<strike>");
+        }
     },
     getUser: function() {
         return Meteor.user();
@@ -107,8 +112,9 @@ Template.add_task.events({
         var due = $('#my-datepicker').val();
         var priority = event.target.priority.value;
         var notes = event.target.notes.value;
+        var status = 'pending'
 
-        Meteor.call("addTask", task, due, priority, notes);
+        Meteor.call("addTask", task, due, priority, notes, status);
         $("#task_add_form").modal('hide');
     },
     'submit .js-update-task': function(event) {
@@ -130,14 +136,12 @@ Template.add_task.events({
     }
 });
 Template.item.events({
-    'click .js-delete-task': function() {
-        //console.log('clicked');
+    'click .js-delete-task': function() {// remove tasks from collection
         var id = this._id;
         Meteor.call("removeTask", id);
     },
-//    'click .js-checked':function(event){
-//        console.log("Task is checked");
-//        var id = this._id;
-//        Meteor.call('checkedTask', id);
-//    }
+    'change .js-checked':function(event){// set status of task by checking box
+        var id = this._id;
+        Meteor.call('checkedTask', id);
+    }
 });
