@@ -48,14 +48,14 @@
         Item Template
  -->
 <template name="item">
-    {{isComplete}}
+
     <div class="left" style="border-bottom:1px solid lightslategray;border-radius:.2em;">
-        <div class="left"><!--left-->
+        <div class="left "><!--left-->
             <li>
                 <input class="items js-checked" id="checked" type="checkbox">
             </li>
-            <li>
-                <a href="#" class=" items js-update-task-form js-complete">
+            <li class="js-update-task-form">
+                <a href="#" class=" items  {{isComplete}}">
                     {{task}}
                 </a>
             </li>

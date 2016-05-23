@@ -65,6 +65,12 @@ select option:hover{
 #checked{
 	margin-right:1em;
 }
+.complete{
+	text-decoration: line-through;
+	color:darkred;
+	opacity:.35;
+ }
+
 .right{
 	float:right;
 	display:flex;

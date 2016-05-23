@@ -26,7 +26,6 @@ Template.add_task.rendered = function() {
 ////    Template Helpers
 /// //// /// //// /// ////
 Template.item_list.helpers({
-    //
     items: function() {
         var priority = $("#priority_sorter").val();
 
@@ -38,23 +37,29 @@ Template.item_list.helpers({
         if (priority_val === "All Tasks") {
             //console.log("First IF priority set to ", priority_val);
             return Items.find();
-
         } else {
             //console.log("Else statement priority value is "+ priority_val+ ". With User ID "+ user);
             return Items.find({owner: user, "priority": priority_val}, {sort: {"created": -1}});
-        }
-    },
-    isComplete: function(){
-        var task = Items.thisId.checked;
-        if(Items.thisId.checked === 'complete'){
-            console.log("Checked confirmed for "+ task);
-            $('.js-complete').wrap("<strike>");
         }
     },
     getUser: function() {
         return Meteor.user();
     }
 });
+///
+/// Item helper
+///
+Template.item.helpers({
+    isComplete: function(){
+        //if(this.checked === 'complete'){
+        //    return 'complete'
+        //}
+        return this.checked ? 'complete': ''
+    }
+});
+///
+/// Add Task helper
+///
 Template.add_task.helpers({
     update: function() {
         if(Session.get('id')) {
@@ -70,9 +75,9 @@ Template.add_task.helpers({
     //  TODO - Make a helper that sets priority to what the priority is.
 });
 
-/// ////
-////    events
-/// ////
+///
+/// events
+///
 Template.layout.events({ // These were the body events
     'click .js-add-task-form': function(event) {
         if (!Meteor.user()) {
@@ -88,11 +93,6 @@ Template.layout.events({ // These were the body events
         } else {
             Session.set('id', this._id); // Set Session to clicked task _id
             $("#task_update_form").modal('show');// Show task to edit in modal
-            //var id = Session.get('id');//   task id
-            //var priority = Items.findOne({_id: id});
-            //priority = priority.priority;
-            //console.log("This is PRIORITY "+priority);
-            //$("#priorityList").val(priority).change();// Set priority
         }
     },
     'change #priority_sorter':function(event, template){
@@ -112,7 +112,7 @@ Template.add_task.events({
         var due = $('#my-datepicker').val();
         var priority = event.target.priority.value;
         var notes = event.target.notes.value;
-        var status = 'pending'
+        var status = false;
 
         Meteor.call("addTask", task, due, priority, notes, status);
         $("#task_add_form").modal('hide');
