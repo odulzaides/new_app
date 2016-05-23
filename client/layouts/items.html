@@ -9,12 +9,16 @@
 
         <div class="row top-margin">
 
-            <div class="col-md-2 sorter">
-                <!-- Task sorter -->
+    <!--
+        Left-side Task sorter
+    -->
+            <div class="col-md-2 sorter border-shadow">
                 {{> add_task}}
             </div>
-            <!-- todo items list -->
-            <div class="col-md-6 col-sm-12 ">
+    <!--
+        Task List
+    -->
+            <div class="col-md-6 col-sm-12 border-shadow">
 
                 <h3>Todo List</h3>
                 <ul id="item-list">
@@ -24,7 +28,11 @@
                         class="glyphicon glyphicon-plus"></span></a></button>
 
             </div>
-            <div class="col-md-3 right-side">
+
+    <!--
+        Right-side column
+    -->
+            <div class="col-md-3 right-side border-shadow">
                 <h4>Task Info</h4>
                 <ul>
                     <li><a href="#">Add Task List</a></li>
@@ -43,7 +51,7 @@
     <div class="left" style="border-bottom:1px solid lightslategray;border-radius:.2em;">
         <div class="left"><!--left-->
             <li>
-                <input class="items" id="checked" type="checkbox">
+                <input class="items js-checked" id="checked" type="checkbox">
             </li>
             <li>
                 <a href="#" class=" items js-update-task-form">

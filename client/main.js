@@ -17,14 +17,14 @@ Template.registerHelper('formatDate', function(date) {
 //  Datepicker
 Template.add_task.rendered = function() {
     $('#my-datepicker').datepicker({
-        format: "mm/dd/yyyy"
+        format: "mm/dd/yyyy" ////   TODO - Set Date to sortable format.
     });
 };
 
 
-/// //// //
+/// //// /// //// /// ////
 ////    Template Helpers
-/// //// //
+/// //// /// //// /// ////
 Template.item_list.helpers({
     items: function() {
         var priority = $("#priority_sorter").val();
@@ -41,7 +41,7 @@ Template.item_list.helpers({
         }else {
             console.log("Else statement priority value is "+ priority_val+ ". With User ID "+ user);
 
-            return Items.find({owner:user,"priority":priority_val});
+            return Items.find({owner:user,"priority":priority_val},{sort:{"created":-1}});
 
         }
 
@@ -134,5 +134,10 @@ Template.item.events({
         //console.log('clicked');
         var id = this._id;
         Meteor.call("removeTask", id);
-    }
+    },
+//    'click .js-checked':function(event){
+//        console.log("Task is checked");
+//        var id = this._id;
+//        Meteor.call('checkedTask', id);
+//    }
 });

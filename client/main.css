@@ -19,7 +19,12 @@ a, .due, input, textarea {
 .top-margin{
 	margin-top:4em;
 }
-
+/*	Common style effects section*/
+.border-shadow{
+	border:1px none transparent;
+	box-shadow: 1px 1px 20px lightslategray;
+	border-radius:.4em;
+}
 /* Sorter */
 .sorter{
 	/*border-right:1px solid black;*/
@@ -123,7 +128,8 @@ select option:hover{
 
 /* 	right column */
 .right-side{
-	padding-top:4%;
+	padding-top:2%;
+	margin-left:3%;
 }
 .right-side>ul{
 	list-style:none;
