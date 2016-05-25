@@ -1,10 +1,10 @@
 Meteor.subscribe('Items');
-
+//  TODO - Seperate helpers and Events into seperate files
 Accounts.ui.config({
     passwordSignupFields: 'USERNAME_AND_OPTIONAL_EMAIL'
 });
 //  Set Session to All Tasks
-Session.set('priority', "All Tasks");
+//Session.set('priority', "All Tasks");
 
 //  Format date for templates
 Template.registerHelper('formatDate', function(date) {
@@ -14,6 +14,9 @@ Template.registerHelper('formatDate', function(date) {
     });
 
 });
+Template.registerHelper('sorterPriority', function(){
+    return Session.get('priority');
+})
 //  Datepicker
 Template.add_task.rendered = function() {
     $('#my-datepicker').datepicker({
@@ -22,24 +25,39 @@ Template.add_task.rendered = function() {
 };
 
 
-/// //// /// //// /// ////
-////    Template Helpers
-/// //// /// //// /// ////
+/// //// /// //// /// /////
+////    Template Helpers //
+/// //// /// //// /// /////
 Template.item_list.helpers({
-    items: function() {
-        var priority = $("#priority_sorter").val();
-
-        /// TODO fix so this can be sorted by 'completed' as well
-
+    items: function() {// Display only tasks wanted
         var priority_val = Session.get('priority');
         var user = Meteor.user()._id;
-        /// Filter by Priority
-        if (priority_val === "All Tasks") {
-            //console.log("First IF priority set to ", priority_val);
-            return Items.find();
-        } else {
-            //console.log("Else statement priority value is "+ priority_val+ ". With User ID "+ user);
-            return Items.find({owner: user, "priority": priority_val}, {sort: {"created": -1}});
+        switch (priority_val){// Mongo Filters
+            case "All Tasks":
+                return Items.find();
+            break;
+
+            case "Pending":
+                return Items.find({checked:false});
+            break;
+
+            case "Low":
+                return Items.find({owner: user, "priority": "Low", checked:false}, {sort: {"created": -1}});
+            break;
+
+            case "Medium":
+                return Items.find({owner: user, "priority": "Medium", checked:false}, {sort: {"created": -1}});
+                break;
+
+            case "High":
+                return Items.find({owner: user, "priority": "High", checked:false}, {sort: {"created": -1}});
+                break;
+
+            case "Completed":
+                return Items.find({owner: user,checked:true});
+                break;
+
+
         }
     },
     getUser: function() {
@@ -50,33 +68,36 @@ Template.item_list.helpers({
 /// Item helper
 ///
 Template.item.helpers({
-    isComplete: function(){
-        //if(this.checked === 'complete'){
-        //    return 'complete'
-        //}
-        return this.checked ? 'complete': ''
+    isComplete: function(){// Strike out text if item is complete
+        return this.checked ? 'complete': '';
+    },
+    isChecked: function(){
+        return this.checked ? 'checked': false;
     }
 });
 ///
 /// Add Task helper
 ///
 Template.add_task.helpers({
-    update: function() {
+    update: function() {// Get selected Task
         if(Session.get('id')) {
             var id = Session.get('id');
             var task = Items.find({_id: id});
             return task;
         }
     },
-    isSelected: function(value){
+    isSelected: function(value){// Select dropdown priority on load
         var taskPriority = Items.findOne({_id: Session.get('id')}).priority;
         return (taskPriority === value) ? 'selected' : '' ;
+    },
+    sorterSelected: function(value){
+        var sorterSelection = Session.get('priority');
+        return (sorterSelection === value) ? 'selected': '';
     }
-    //  TODO - Make a helper that sets priority to what the priority is.
 });
 
 ///
-/// events
+/// Layout events
 ///
 Template.layout.events({ // These were the body events
     'click .js-add-task-form': function(event) {
@@ -96,14 +117,15 @@ Template.layout.events({ // These were the body events
         }
     },
     'change #priority_sorter':function(event, template){
-        console.log("A change detected");
-        Session.set('priority', template.find('#priority_sorter').value);
-        //console.log("Event priority set to "+ Session.get("priority"));
+        //console.log("A change detected");
+        Session.setPersistent('priority', template.find('#priority_sorter').value);
     }
 //     TODO - Set sorting for "All tasks", "Pending (Not Completed)", and "Completed"
 //     TODO - Set Session to whatever the sorter was before.
 });
-
+///
+/// Add Task Events
+///
 Template.add_task.events({
     'submit .js-add-task': function(event) {
         console.log('clicked');
@@ -127,8 +149,7 @@ Template.add_task.events({
         Meteor.call("updateTask", id, task, due, priority, notes); //  Update Task record
         $("#task_update_form").modal('hide'); //    Hide the modal
     },
-    //  click inside date field to show 'datepicker'
-    'focus #update-datepicker':function(event){
+    'focus #update-datepicker':function(event){//  click inside date field to show 'datepicker'
         $('#update-datepicker').datepicker({
             format: "mm/dd/yyyy",
             autoclose:true

@@ -5,44 +5,46 @@
 
 
     <div class="container">
-        <h2 class="display-6 ">Todo List for {{getUser.username}}</h2>
+        <h2 class="display-6 ">Todo List for  {{getUser.username}}</h2>
 
         <div class="row top-margin">
 
     <!--
         Left-side Task sorter
     -->
-            <div class="col-md-2 sorter border-shadow">
+            <div class="col-md-2 col-height sorter border-shadow">
                 {{> add_task}}
             </div>
     <!--
         Task List
     -->
-            <div class="col-md-6 col-sm-12 border-shadow">
-
-                <h3>Todo List</h3>
+            <div class="col-md-6 col-sm-12 col-height border-shadow">
+<!--FIXME - set an If statement here so that the word priority appears only when L,M, or H is selected-->
+                <h3>Todo List - Showing {{sorterPriority}} tasks for</h3>
                 <ul id="item-list">
                     {{#each items}} {{> item}} {{/each}}
                 </ul>
-                <button class="btn btn-brand add-btn js-add-task-form"><a href="#" class="  " id="add-task"><span
-                        class="glyphicon glyphicon-plus"></span></a></button>
+                <a href="#" style="color:rgba(0,102,0,0.4);margin-bottom:80%; " class="js-add-task-form" id="add-task">Add Task</a>
+                <div style="height:10%;color:transparent">Text to make margin</div>
 
             </div>
 
     <!--
         Right-side column
     -->
-            <div class="col-md-3 right-side border-shadow">
-                <h4>Task Info</h4>
+            <!--TODO - Make this section a due today section-->
+            <div class="col-md-3 col-height right-side border-shadow">
+                <h4>Due Soon</h4>
                 <ul>
-                    <li><a href="#">Add Task List</a></li>
+                    <li><a href="#">Due Today</a></li>
 
-                    <li><a href="#">Add Task</a></li>
+                    <li><a href="#">Due Soon</a></li>
                 </ul>
             </div>
+
         </div>
     </div>
-    <!--    TODO - add a section totaling the amount of tasks etc.-->
+    <!--    NOTE - add a section totaling the amount of tasks etc.-->
 </template>
 <!-- 
         Item Template
@@ -52,7 +54,7 @@
     <div class="left" style="border-bottom:1px solid lightslategray;border-radius:.2em;">
         <div class="left "><!--left-->
             <li>
-                <input class="items js-checked" id="checked" type="checkbox">
+                <input class="items js-checked" id="checked" type="checkbox" checked="{{isChecked}}">
             </li>
             <li class="js-update-task-form">
                 <a href="#" class=" items  {{isComplete}}">
@@ -71,6 +73,6 @@
                         class="glyphicon glyphicon-remove"></span></button>
             </li>
         </div>
-        <!--<div class="clear"></div>-->
+
     </div>
 </template>

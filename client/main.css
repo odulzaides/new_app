@@ -7,7 +7,7 @@ a, .due, input, textarea {
 	color:rgba(148,148,148,1);
 }
 
-/*	FIXME - Change button selecton to */
+
 .navbar, .navbar-default, .btn-brand {
 	background-color: rgba(0,102,0,0.4);
 
@@ -24,6 +24,9 @@ a, .due, input, textarea {
 	border:1px none transparent;
 	box-shadow: 1px 1px 20px lightslategray;
 	border-radius:.4em;
+}
+.col-height{
+	min-height:400px;
 }
 /* Sorter */
 .sorter{
@@ -57,6 +60,7 @@ select option:hover{
 	margin-left:.2em;
 	overflow:hidden;
 	text-indent: 0;
+	max-width:75%;
 }
 .left li{
 	list-style: none;
@@ -81,7 +85,7 @@ select option:hover{
 	margin-left:.2em;
 	text-align: right;
 	position:absolute;
-	right:-15%;
+	right:-5%;
 	width:40%;
 
 }
