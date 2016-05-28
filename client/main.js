@@ -16,7 +16,7 @@ Template.registerHelper('formatDate', function(date) {
 });
 Template.registerHelper('sorterPriority', function(){
     return Session.get('priority');
-})
+});
 //  Datepicker
 Template.add_task.rendered = function() {
     $('#my-datepicker').datepicker({
