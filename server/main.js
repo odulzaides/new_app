@@ -26,7 +26,7 @@ Meteor.startup(() => {
     //}
 })
 Meteor.publish('Items', function() {
-    console.log(this.userId);
+    //console.log(this.userId);
     return Items.find({$or:[{owner:this.userId}]});
 });
 

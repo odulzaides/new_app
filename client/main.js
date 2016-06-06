@@ -7,18 +7,18 @@ Accounts.ui.config({
 //Session.set('priority', "All Tasks");
 
 //  Format date for templates
-Template.registerHelper('formatDate', function(date) {
+Template.registerHelper('formatDate', function (date) {
     return date.toLocaleDateString("en-US", {
         "day": "numeric",
         "month": "numeric"
     });
 
 });
-Template.registerHelper('sorterPriority', function(){
+Template.registerHelper('sorterPriority', function () {
     return Session.get('priority');
 });
 //  Datepicker
-Template.add_task.rendered = function() {
+Template.add_task.rendered = function () {
     $('#my-datepicker').datepicker({
         format: "mm/dd/yyyy" ////   TODO - Set Date to sortable format.
     });
@@ -29,38 +29,40 @@ Template.add_task.rendered = function() {
 ////    Template Helpers //
 /// //// /// //// /// /////
 Template.item_list.helpers({
-    items: function() {// Display only tasks wanted
-        var priority_val = Session.get('priority');
-        var user = Meteor.user()._id;
-        switch (priority_val){// Mongo Filters
-            case "All Tasks":
-                return Items.find();
-            break;
+    items: function () {// Display only tasks wanted
+        if (Meteor.user()) {
+            var priority_val = Session.get('priority');
+            var user = Meteor.user()._id;
+            switch (priority_val) {// Mongo Filters
+                case "All Tasks":
+                    return Items.find();
+                    break;
 
-            case "Pending":
-                return Items.find({checked:false});
-            break;
+                case "Pending":
+                    return Items.find({checked: false});
+                    break;
 
-            case "Low":
-                return Items.find({owner: user, "priority": "Low", checked:false}, {sort: {"created": -1}});
-            break;
+                case "Low":
+                    return Items.find({owner: user, "priority": "Low", checked: false}, {sort: {"created": -1}});
+                    break;
 
-            case "Medium":
-                return Items.find({owner: user, "priority": "Medium", checked:false}, {sort: {"created": -1}});
-                break;
+                case "Medium":
+                    return Items.find({owner: user, "priority": "Medium", checked: false}, {sort: {"created": -1}});
+                    break;
 
-            case "High":
-                return Items.find({owner: user, "priority": "High", checked:false}, {sort: {"created": -1}});
-                break;
+                case "High":
+                    return Items.find({owner: user, "priority": "High", checked: false}, {sort: {"created": -1}});
+                    break;
 
-            case "Completed":
-                return Items.find({owner: user,checked:true});
-                break;
+                case "Completed":
+                    return Items.find({owner: user, checked: true});
+                    break;
 
 
+            }
         }
     },
-    getUser: function() {
+    getUser: function () {
         return Meteor.user();
     }
 });
@@ -68,31 +70,35 @@ Template.item_list.helpers({
 /// Item helper
 ///
 Template.item.helpers({
-    isComplete: function(){// Strike out text if item is complete
-        return this.checked ? 'complete': '';
+    isComplete: function () {// Strike out text if item is complete
+        return this.checked ? 'complete' : '';
     },
-    isChecked: function(){
-        return this.checked ? 'checked': false;
+    isChecked: function () {
+        return this.checked ? 'checked' : false;
     }
 });
 ///
 /// Add Task helper
 ///
 Template.add_task.helpers({
-    update: function() {// Get selected Task
-        if(Session.get('id')) {
+    update: function () {// Get selected Task
+        if (Session.get('id')) {
             var id = Session.get('id');
             var task = Items.find({_id: id});
             return task;
         }
     },
-    isSelected: function(value){// Select dropdown priority on load
-        var taskPriority = Items.findOne({_id: Session.get('id')}).priority;
-        return (taskPriority === value) ? 'selected' : '' ;
+    isSelected: function (value) {// Select dropdown priority on load
+        if (this._id) {
+            Session.set('id', this._id);
+            var id =  Session.get('id');
+            var taskPriority = Items.findOne({_id:id }).priority;
+            return (taskPriority === value) ? 'selected' : '';
+        }
     },
-    sorterSelected: function(value){
+    sorterSelected: function (value) {
         var sorterSelection = Session.get('priority');
-        return (sorterSelection === value) ? 'selected': '';
+        return (sorterSelection === value) ? 'selected' : '';
     }
 });
 
@@ -100,7 +106,7 @@ Template.add_task.helpers({
 /// Layout events
 ///
 Template.layout.events({ // These were the body events
-    'click .js-add-task-form': function(event) {
+    'click .js-add-task-form': function (event) {
         if (!Meteor.user()) {
             $("#join_or_login").modal('show');
         } else {
@@ -108,7 +114,7 @@ Template.layout.events({ // These were the body events
             $("#task_add_form").modal('show');
         }
     },
-    'click .js-update-task-form': function(event) {
+    'click .js-update-task-form': function (event) {
         if (!Meteor.user()) {
             $("#join_or_login").modal('show');
         } else {
@@ -116,18 +122,17 @@ Template.layout.events({ // These were the body events
             $("#task_update_form").modal('show');// Show task to edit in modal
         }
     },
-    'change #priority_sorter':function(event, template){
+    'change #priority_sorter': function (event, template) {
         //console.log("A change detected");
         Session.setPersistent('priority', template.find('#priority_sorter').value);
     }
-//     TODO - Set sorting for "All tasks", "Pending (Not Completed)", and "Completed"
 //     TODO - Set Session to whatever the sorter was before.
 });
 ///
 /// Add Task Events
 ///
 Template.add_task.events({
-    'submit .js-add-task': function(event) {
+    'submit .js-add-task': function (event) {
         console.log('clicked');
         event.preventDefault();
         var task = event.target.text.value;
@@ -139,7 +144,7 @@ Template.add_task.events({
         Meteor.call("addTask", task, due, priority, notes, status);
         $("#task_add_form").modal('hide');
     },
-    'submit .js-update-task': function(event) {
+    'submit .js-update-task': function (event) {
         event.preventDefault();// Do not reload form
         var id = Session.get('id');// _id of Task being updated
         var task = event.target.task.value;
@@ -149,19 +154,19 @@ Template.add_task.events({
         Meteor.call("updateTask", id, task, due, priority, notes); //  Update Task record
         $("#task_update_form").modal('hide'); //    Hide the modal
     },
-    'focus #update-datepicker':function(event){//  click inside date field to show 'datepicker'
+    'focus #update-datepicker': function (event) {//  click inside date field to show 'datepicker'
         $('#update-datepicker').datepicker({
             format: "mm/dd/yyyy",
-            autoclose:true
+            autoclose: true
         });
     }
 });
 Template.item.events({
-    'click .js-delete-task': function() {// remove tasks from collection
+    'click .js-delete-task': function () {// remove tasks from collection
         var id = this._id;
         Meteor.call("removeTask", id);
     },
-    'change .js-checked':function(event){// set status of task by checking box
+    'change .js-checked': function (event) {// set status of task by checking box
         var id = this._id;
         Meteor.call('checkedTask', id);
     }
