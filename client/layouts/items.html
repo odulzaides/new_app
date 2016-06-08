@@ -27,7 +27,7 @@
                             <th>Task</th>
                             <th>Due</th>
                             <th>Priority</th>
-                            <th>X</th>
+                            <!--<th>X</th>-->
                         </thead>
                     <tbody>
                     {{#each items}} {{> item}} {{/each}}
@@ -51,7 +51,7 @@
                 <ul>
                     <li><a href="#">Due Today</a>
                         <ul>
-                            <!--Helper-->
+                            <!--TODO - Create li template for 'due today-->
                         </ul>
                     </li>
 
@@ -59,15 +59,15 @@
                     <li>
                         <a href="#">Due Soon</a>
                         <ul>
-                            <!--Helper-->
+                            <!--TODO - Creat a li template for tasks due in next 3 days-->
                         </ul>
                     </li>
                 </ul>
             </div>
+            <!--    NOTE - add a section totaling the amount of tasks etc.-->
 
         </div>
     </div>
-    <!--    NOTE - add a section totaling the amount of tasks etc.-->
 </template>
 <!-- 
         Item Template
@@ -92,7 +92,7 @@
 
             </td>
             <td>
-                {{due}}
+                {{formatDate due}}
             </td>
             <td>
                 {{priority}}
@@ -105,32 +105,5 @@
             </td>
         </tr>
 
-
-
-    <!--
-        //////////  OLD LIST //////////
--->
-    <!--<li>-->
-    <!--<input class=" js-checked"-->
-    <!--id="checked"-->
-    <!--type="checkbox"-->
-    <!--checked="{{isChecked}}">-->
-    <!--</li>-->
-    <!--<li class="js-update-task-form">-->
-    <!--<a href="#"-->
-    <!--class=" items  {{isComplete}}">-->
-    <!--{{task}}-->
-    <!--</a>-->
-    <!--</li>-->
-
-
-    <!--<li class=" "><span class="label-position due">{{due}}</span></li>-->
-    <!--<li><span class="label label-info items priority-position {{priority}}"-->
-    <!--id="{{priority}}">{{priority}}</span></li>-->
-    <!--<li>-->
-    <!--<button type="button"-->
-    <!--class="label label-info  trash js-delete-task"><span-->
-    <!--class="glyphicon glyphicon-remove"></span></button>-->
-    <!--</li>-->
 
 </template>

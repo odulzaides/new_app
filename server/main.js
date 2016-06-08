@@ -26,7 +26,7 @@ Meteor.startup(() => {
     //}
 })
 Meteor.publish('Items', function() {
-    //console.log(this.userId);
+   //   show only tasks for logged in user
     return Items.find({$or:[{owner:this.userId}]});
 });
 
