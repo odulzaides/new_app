@@ -29,3 +29,5 @@ rajit:bootstrap3-datepicker
 iron:router
 kadira:debug
 u2622:persistent-session
+
+momentjs:moment

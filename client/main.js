@@ -4,30 +4,35 @@ Accounts.ui.config({
     passwordSignupFields: 'USERNAME_AND_OPTIONAL_EMAIL'
 });
 //  Set Session to All Tasks
-//Session.set('priority', "All Tasks");
+Session.set('priority', "Pending");
 
 //  Format date for templates
 Template.registerHelper('formatDate', function (date) {
-    return date.toLocaleDateString("en-US", {
-        "day": "numeric",
-        "month": "numeric"
-    });
+    var formattedDate = date.toLocaleString('en-us',{
+            "weekday":"short", //   TODO - set to show only weekday if it is THIS week.
+            "day":"numeric",
+            "month": "numeric"
+        }
+
+
+    )   ;
+    console.log(date);
+    return formattedDate;
 
 });
+
 Template.registerHelper('sorterPriority', function () {
     return Session.get('priority');
 });
 //  Datepicker
 Template.add_task.rendered = function () {
-    $('#my-datepicker').datepicker({
-        format: "mm/dd/yyyy" ////   TODO - Set Date to sortable format.
-    });
+    $('#my-datepicker').datepicker();
 };
 
 
-/// //// /// //// /// /////
-////    Template Helpers //
-/// //// /// //// /// /////
+/// ////
+////        Template Helpers
+/// ////
 Template.item_list.helpers({
     items: function () {// Display only tasks wanted
         if (Meteor.user()) {
@@ -91,8 +96,8 @@ Template.add_task.helpers({
     isSelected: function (value) {// Select dropdown priority on load
         if (this._id) {
             Session.set('id', this._id);
-            var id =  Session.get('id');
-            var taskPriority = Items.findOne({_id:id }).priority;
+            var id = Session.get('id');
+            var taskPriority = Items.findOne({_id: id}).priority;
             return (taskPriority === value) ? 'selected' : '';
         }
     },
@@ -110,7 +115,6 @@ Template.layout.events({ // These were the body events
         if (!Meteor.user()) {
             $("#join_or_login").modal('show');
         } else {
-            console.log('clicked');
             $("#task_add_form").modal('show');
         }
     },
@@ -123,17 +127,14 @@ Template.layout.events({ // These were the body events
         }
     },
     'change #priority_sorter': function (event, template) {
-        //console.log("A change detected");
         Session.setPersistent('priority', template.find('#priority_sorter').value);
     }
-//     TODO - Set Session to whatever the sorter was before.
 });
 ///
 /// Add Task Events
 ///
 Template.add_task.events({
     'submit .js-add-task': function (event) {
-        console.log('clicked');
         event.preventDefault();
         var task = event.target.text.value;
         var due = $('#my-datepicker').val();
@@ -150,6 +151,7 @@ Template.add_task.events({
         var task = event.target.task.value;
         var due = $('#update-datepicker').val();
         var priority = event.target.priorityList.value;
+        //due = moment(due , "dd.mm.yy").toDate();
         var notes = event.target.notes.value;
         Meteor.call("updateTask", id, task, due, priority, notes); //  Update Task record
         $("#task_update_form").modal('hide'); //    Hide the modal
