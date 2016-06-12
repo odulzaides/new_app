@@ -1,4 +1,5 @@
 /* CSS declarations go here */
+
 body {
     color: rgba(0, 102, 0, 0.4);
     background: white;
@@ -24,12 +25,13 @@ a, .due, input, textarea {
 
 ul {
     list-style: none;
+    /*text-align:left;*/
 }
 
 /*	Common style effects section*/
 .border-shadow {
     border: 1px none transparent;
-    box-shadow: 1px 1px 20px lightslategray;
+    box-shadow: 1px 1px 3px lightslategray;
     border-radius: .4em;
 }
 
@@ -62,15 +64,16 @@ ul {
     table-layout: fixed;
     border-collapse: collapse;
 }
-.task-list:first-child{
-    width:2%;
-}
 
+.delete{
+    margin-left:1rem;
+    padding-top:1rem;
+    text-align:right;
+}
 .task-list td{
-    word-wrap: normal;
-    width:auto;
+    word-wrap: break-word;
+    /*width:auto;*/
 }
-
 
 /*      Right-side  */
 .list-info {
@@ -82,3 +85,11 @@ ul {
     color: lightslategray;
     text-decoration: line-through;
 }
+
+
+/*  Task Table */
+.table{
+ table-layout: fixed;
+}
+.table th{
+    padding-left:1rem;}

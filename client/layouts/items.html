@@ -2,13 +2,10 @@
         Item List
  -->
 <template name="item_list">
-
-
     <div class="container">
         <h2 class=" task-header bottom-margin">Todo List for  {{getUser.username}}</h2>
 
         <div class="flex-container">
-
             <!--
                 Left-side Task sorter
             -->
@@ -21,14 +18,13 @@
             <div class=" task-list border-shadow">
                 <!--FIXME - set an If statement here so that the word priority appears only when L,M, or H is selected-->
                 <h3>Todo List - Showing {{sorterPriority}} tasks for</h3>
-                <table class="table table-condensed">
-                        <thead>
-                            <th></th>
-                            <th>Task</th>
-                            <th>Due</th>
-                            <th>Priority</th>
-                            <!--<th>X</th>-->
-                        </thead>
+                <table class="table ">
+                    <thead>
+                    <th>√</th>
+                    <th style="width:400px;">Task</th>
+                    <th>Due</th>
+                    <th>Priority</th>
+                    </thead>
                     <tbody>
                     {{#each items}} {{> item}} {{/each}}
                     </tbody>
@@ -39,33 +35,39 @@
                    id="add-task">Add Task</a>
 
                 <div style="height:10%;color:transparent">Text to make margin</div>
-
             </div>
-
             <!--
                 Right-side column
             -->
             <!--TODO - Make this section a due today section-->
             <div class=" list-info border-shadow">
-                <h4>Due Soon</h4>
-                <ul>
-                    <li><a href="#">Due Today</a>
-                        <ul>
-                            <!--TODO - Create li template for 'due today-->
-                        </ul>
-                    </li>
+                <div>
+                    <h4>Past Due</h4>
 
+                    <ul>
+                        <!--TODO - Create li template for 'due today-->
+                        {{#each pastDue }}  {{> due}} {{/each}}
+                    </ul>
+                </div>
 
-                    <li>
-                        <a href="#">Due Soon</a>
-                        <ul>
-                            <!--TODO - Creat a li template for tasks due in next 3 days-->
-                        </ul>
-                    </li>
-                </ul>
+                <div>
+                    <h4>Due Today</h4>
+
+                    <ul>
+                        <!--TODO - Create li template for 'due today-->
+                        {{#each today }}  {{> due}} {{/each}}
+                    </ul>
+                </div>
+
+                <div>
+                    <h4>Due Soon</h4>
+                    <ul>
+                        {{#each dueSoon }}  {{> due}} {{/each}}
+                    </ul>
+                </div>
+
             </div>
             <!--    NOTE - add a section totaling the amount of tasks etc.-->
-
         </div>
     </div>
 </template>
@@ -73,37 +75,32 @@
         Item Template
  -->
 <template name="item">
-
-
-
-        <tr>
-            <td>
-                <input class=" js-checked col-md-1"
-                       id="checked"
-                       type="checkbox"
-                       checked="{{isChecked}}">
-            </td>
-            <td >
-                <a href="#"
-                   class="js-update-task-form   {{isComplete}}">
-                    {{task}}
-
-                </a>
-
-            </td>
-            <td>
-                {{formatDate due}}
-            </td>
-            <td>
-                {{priority}}
-            </td>
-            <td>
-                <a href="#"
-                   class="trash js-delete-task"><span
-                        class="glyphicon glyphicon-remove"></span>
-                </a>
-            </td>
-        </tr>
-
-
+    <tr>
+        <td>
+            <input class=" js-checked col-md-1"
+                   id="checked"
+                   type="checkbox"
+                   checked="{{isChecked}}"
+                   style="width:1rem;">
+        </td>
+        <td>
+            <a href="#"
+               class="js-update-task-form   {{isComplete}}">
+                {{task}}
+            </a>
+        </td>
+        <td>
+            {{formatDate due}}
+        </td>
+        <td>
+            {{priority}}
+        </td>
+        <td class="delete">
+            <a href="#"
+               class="trash js-delete-task"><span
+                    class="glyphicon glyphicon-remove"
+                    ></span>
+            </a>
+        </td>
+    </tr>
 </template>

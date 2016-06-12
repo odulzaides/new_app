@@ -9,14 +9,12 @@ Session.set('priority', "Pending");
 //  Format date for templates
 Template.registerHelper('formatDate', function (date) {
     var formattedDate = date.toLocaleString('en-us',{
-            "weekday":"short", //   TODO - set to show only weekday if it is THIS week.
+            //"weekday":"short", //   TODO - set to show only weekday if it is THIS week.
             "day":"numeric",
             "month": "numeric"
         }
-
-
-    )   ;
-    console.log(date);
+    );
+    //console.log(date);
     return formattedDate;
 
 });
@@ -67,6 +65,45 @@ Template.item_list.helpers({
             }
         }
     },
+        today: function(){// Tasks due today
+            var today = new Date();
+            today.setHours(0,0,0,0);
+            var beforeToday = new Date();
+            beforeToday.setHours(0,0,0,0);
+            beforeToday.setDate(today.getDate()-1);
+            //console.log("This is today: " +today + " |||||  This is yesterday: " + beforeToday);
+
+            return Items.find(
+                {due:today},
+                {sort:{due:-1}}
+            ).fetch();
+    },
+    pastDue: function(){// Tasks due today
+        var today = new Date();
+        today.setHours(0,0,0,0);
+        var beforeToday = new Date();
+        beforeToday.setHours(0,0,0,0);
+        beforeToday.setDate(today.getDate()-1);
+        //console.log("This is today: " +today + " |||||  This is yesterday: " + beforeToday);
+
+        return Items.find(
+            {due:{$not:{$gt: beforeToday}}},
+            {sort:{due:-1}}
+        ).fetch();
+    },
+    dueSoon: function(){// Tasks due today
+        var today = new Date();
+        today.setHours(0,0,0,0);
+        var tomorrow = new Date();
+        tomorrow.setHours(0,0,0,0);
+        tomorrow.setDate(today.getDate()+1);
+        console.log("This is today: " +today + " |||||  This is tomorrow: " + tomorrow);
+
+        return Items.find(
+            {due:{$gt: today}},
+            {sort:{due:-1}}
+        ).fetch();
+    },
     getUser: function () {
         return Meteor.user();
     }
@@ -82,6 +119,16 @@ Template.item.helpers({
         return this.checked ? 'checked' : false;
     }
 });
+
+///
+/// Due Today
+///
+//Template.dueToday.helpers({
+//    dueToday: function(){// get today's tasks
+//        var today = Date();
+//        return Items.find({due:today});
+//    }
+//})
 ///
 /// Add Task helper
 ///
