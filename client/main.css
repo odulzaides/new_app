@@ -4,7 +4,9 @@ body {
     color: rgba(0, 102, 0, 0.4);
     background: white;
 }
-
+h1, h2, h3, h4{
+    margin-bottom:4.5rem;
+}
 a, .due, input, textarea {
     color: rgba(148, 148, 148, 1);
 }
@@ -68,7 +70,7 @@ ul {
 .delete{
     margin-left:1rem;
     padding-top:1rem;
-    text-align:right;
+    text-align:center;
 }
 .task-list td{
     word-wrap: break-word;

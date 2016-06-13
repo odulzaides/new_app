@@ -68,9 +68,9 @@ Template.item_list.helpers({
         today: function(){// Tasks due today
             var today = new Date();
             today.setHours(0,0,0,0);
-            var beforeToday = new Date();
-            beforeToday.setHours(0,0,0,0);
-            beforeToday.setDate(today.getDate()-1);
+            //var beforeToday = new Date();
+            //beforeToday.setHours(0,0,0,0);
+            //beforeToday.setDate(today.getDate()-1);
             //console.log("This is today: " +today + " |||||  This is yesterday: " + beforeToday);
 
             return Items.find(
@@ -105,8 +105,18 @@ Template.item_list.helpers({
         ).fetch();
     },
     getUser: function () {
-        return Meteor.user();
+        return Meteor.user().username;
+    },
+    highpriority: function(){
+        return Items.find({
+            priority: "High"
+        }).count();
     }
+});
+Template.highPriorityCount.helpers({
+    highPriorityTasks: function() {
+    return Items.find({priority: "High"}).count();
+}
 });
 ///
 /// Item helper
@@ -120,16 +130,6 @@ Template.item.helpers({
     }
 });
 
-///
-/// Due Today
-///
-//Template.dueToday.helpers({
-//    dueToday: function(){// get today's tasks
-//        var today = Date();
-//        return Items.find({due:today});
-//    }
-//})
-///
 /// Add Task helper
 ///
 Template.add_task.helpers({
@@ -210,6 +210,10 @@ Template.add_task.events({
         });
     }
 });
+
+///
+/// Item Events
+///
 Template.item.events({
     'click .js-delete-task': function () {// remove tasks from collection
         var id = this._id;
@@ -219,4 +223,13 @@ Template.item.events({
         var id = this._id;
         Meteor.call('checkedTask', id);
     }
+});
+
+///
+/// High Priority Count Events
+///
+Template.highPriorityCount.events({
+   'click .js-go-to-high-priority': function(){// Show only high priority tasks in Task list
+       Session.set('priority', "High");
+   }
 });
