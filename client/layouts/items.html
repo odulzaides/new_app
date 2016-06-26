@@ -10,7 +10,8 @@
                 Left-side Task sorter
             -->
             <div class="sorter border-shadow">
-                {{> add_task}}
+
+                {{> sorter}}
 
                 <ul>
                     {{> highPriorityCount}}
@@ -23,8 +24,10 @@
             <!--
                 Task List
             -->
+            {{> add_task}}
             <div class=" task-list border-shadow">
-                <!--FIXME - set an If statement here so that the word priority appears only when L,M, or H is selected-->
+                <!--    NOTE - add a section totaling the amount of tasks etc.-->
+
                 <h3>Todo List - Showing {{sorterPriority}}  for {{getUser}}</h3>
 
                 <table class="table ">
@@ -48,14 +51,13 @@
             <!--
                 Right-side column
             -->
-            <!--TODO - Make this section a due today section-->
+            <!--TODO - add a count() for each section-->
             <div class=" list-info border-shadow">
                 <p style="padding-top:5rem;"></p>
                 <div>
                     <h4>Past Due</h4>
 
                     <ul>
-                        <!--TODO - Create li template for 'due today-->
                         {{#each pastDue }}  {{> due}} {{/each}}
                     </ul>
                 </div>
@@ -64,7 +66,6 @@
                     <h4>Due Today</h4>
 
                     <ul>
-                        <!--TODO - Create li template for 'due today-->
                         {{#each today }}  {{> due}} {{/each}}
                     </ul>
                 </div>
@@ -77,7 +78,6 @@
                 </div>
 
             </div>
-            <!--    NOTE - add a section totaling the amount of tasks etc.-->
         </div>
     </div>
 </template>

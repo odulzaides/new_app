@@ -1,5 +1,5 @@
 Meteor.subscribe('Items');
-//  TODO - Seperate helpers and Events into seperate files
+
 Accounts.ui.config({
     passwordSignupFields: 'USERNAME_AND_OPTIONAL_EMAIL'
 });
@@ -33,6 +33,20 @@ Template.registerHelper('getUser', function () {
     Session.set('user', Meteor.user());
     var user = Session.get('user');
     return user.username;
+});
+
+Template.registerHelper('isSelected', function () {// Select dropdown priority on load
+    if (this._id) {
+        Session.set('id', this._id);
+        var id = Session.get('id');
+        var taskPriority = Items.findOne({_id: id}).priority;
+        return (taskPriority === value) ? 'selected' : '';
+    }
+});
+Template.registerHelper('sorterSelected', function (value) {
+    var sorterSelection = Session.get('priority');
+    return (sorterSelection === value) ? 'selected' : '';
+
 });
 //  Datepicker
 Template.add_task.rendered = function () {
@@ -138,18 +152,6 @@ Template.add_task.helpers({
             var task = Items.find({_id: id});
             return task;
         }
-    },
-    isSelected: function (value) {// Select dropdown priority on load
-        if (this._id) {
-            Session.set('id', this._id);
-            var id = Session.get('id');
-            var taskPriority = Items.findOne({_id: id}).priority;
-            return (taskPriority === value) ? 'selected' : '';
-        }
-    },
-    sorterSelected: function (value) {
-        var sorterSelection = Session.get('priority');
-        return (sorterSelection === value) ? 'selected' : '';
     }
 });
 
@@ -194,6 +196,7 @@ Template.add_task.events({
     'submit .js-update-task': function (event) {
         event.preventDefault();// Do not reload form
         var id = Session.get('id');// _id of Task being updated
+        console.log(id);
         var task = event.target.task.value;
         var due = $('#update-datepicker').val();
         var priority = event.target.priorityList.value;
@@ -213,6 +216,8 @@ Template.add_task.events({
 ///
 /// Item Events
 ///
+// Todo Seperate helper and events into one file for each template.
+// Todo Set up page if user is not logged in to display - ie "Log in or Create user to begin..."
 Template.item.events({
     'click .js-delete-task': function () {// remove tasks from collection
         var id = this._id;
@@ -233,6 +238,5 @@ Template.item.events({
 Template.highPriorityCount.events({
    'click .js-go-to-high-priority': function(){// Show only high priority tasks in Task list
        Session.set('priority', "High");
-       // FIXME - This is counting completed tasks in count. Fix so it doesn't count completed High Priority.
    }
 });

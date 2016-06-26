@@ -1,0 +1,19 @@
+<template name="sorter">
+    <div class="task_actions">
+        <!--<button class="btn "><a href="#" class=" js-add-task-form " id="add-task">Add New Task</a></button>-->
+        <br/><br/><br/>
+        <label class="labels"
+               for="priority_sorter">Sort by Priority</label><br/>
+        <select name="priority_sorter"
+                id="priority_sorter"
+                class="add-task">
+            <option value="Pending" {{isSelected "Pending"}} {{sorterSelected "Pending"}}>Pending</option>
+            <option value="Low" {{isSelected "Low"}} {{sorterSelected "Low"}}>Low</option>
+            <option value="Medium" {{isSelected "Medium"}} {{sorterSelected "Medium"}}>Medium</option>
+            <option value="High" {{isSelected "High"}} {{sorterSelected "High"}}>High</option>
+            <option value="All Tasks" {{isSelected "All Tasks"}} {{sorterSelected "All Tasks"}}>All Tasks</option>
+            <option value="Completed" {{isSelected "Completed"}} {{sorterSelected "Completed"}}>Completed</option>
+        </select><br/><br/><br/>
+
+    </div>
+</template>

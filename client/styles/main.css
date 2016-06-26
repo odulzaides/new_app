@@ -50,12 +50,16 @@ ul {
 }
 
 .task-header {
-    margin-left: .8em 0;
+    margin-left:.8rem;
 }
 
 .sorter {
     width: 18%;
     padding: 1.4em;
+}
+.sorter a{
+    padding-left:0;
+    color:inherit;
 }
 
 .task-list {
@@ -86,7 +90,7 @@ ul {
 }
 
 .list-info:first-child {
-    padding-top:4rem;
+    padding-top:3.9rem;
 }
 .list-info  div{
 
