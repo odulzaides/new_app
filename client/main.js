@@ -6,6 +6,7 @@ Accounts.ui.config({
 //  Set Session to All Tasks
 Session.set('priority', "Pending");
 
+
 //  Format date for templates
 Template.registerHelper('formatDate', function (date) {
     var formattedDate = date.toLocaleString('en-us',{
@@ -14,13 +15,24 @@ Template.registerHelper('formatDate', function (date) {
             "month": "numeric"
         }
     );
-    //console.log(date);
     return formattedDate;
-
 });
 
 Template.registerHelper('sorterPriority', function () {
-    return Session.get('priority');
+    var priority= Session.get('priority');
+
+    if(priority === 'Pending' || priority === 'Completed'){
+        return Session.get('priority') + " tasks";
+    } else if (priority === 'All Tasks') {
+        return Session.get('priority');
+    } else {
+        return Session.get('priority') + " priority tasks ";
+    }
+});
+Template.registerHelper('getUser', function () {
+    Session.set('user', Meteor.user());
+    var user = Session.get('user');
+    return user.username;
 });
 //  Datepicker
 Template.add_task.rendered = function () {
@@ -60,19 +72,13 @@ Template.item_list.helpers({
                 case "Completed":
                     return Items.find({owner: user, checked: true});
                     break;
-
-
             }
         }
+
     },
         today: function(){// Tasks due today
             var today = new Date();
             today.setHours(0,0,0,0);
-            //var beforeToday = new Date();
-            //beforeToday.setHours(0,0,0,0);
-            //beforeToday.setDate(today.getDate()-1);
-            //console.log("This is today: " +today + " |||||  This is yesterday: " + beforeToday);
-
             return Items.find(
                 {due:today},
                 {sort:{due:-1}}
@@ -84,8 +90,6 @@ Template.item_list.helpers({
         var beforeToday = new Date();
         beforeToday.setHours(0,0,0,0);
         beforeToday.setDate(today.getDate()-1);
-        //console.log("This is today: " +today + " |||||  This is yesterday: " + beforeToday);
-
         return Items.find(
             {due:{$not:{$gt: beforeToday}}},
             {sort:{due:-1}}
@@ -97,25 +101,20 @@ Template.item_list.helpers({
         var tomorrow = new Date();
         tomorrow.setHours(0,0,0,0);
         tomorrow.setDate(today.getDate()+1);
-        console.log("This is today: " +today + " |||||  This is tomorrow: " + tomorrow);
-
         return Items.find(
             {due:{$gt: today}},
             {sort:{due:-1}}
         ).fetch();
-    },
-    getUser: function () {
-        return Meteor.user().username;
-    },
-    highpriority: function(){
-        return Items.find({
-            priority: "High"
-        }).count();
     }
 });
+///
+/// HighPriorityTasks
+///
 Template.highPriorityCount.helpers({
     highPriorityTasks: function() {
-    return Items.find({priority: "High"}).count();
+        console.log("I'm in highPriorityCount " + Session.get('user')._id);
+        var user = Meteor.user()._id;
+        return Items.find({owner: user, "priority": "High", checked:false}).count();
 }
 });
 ///
@@ -129,7 +128,7 @@ Template.item.helpers({
         return this.checked ? 'checked' : false;
     }
 });
-
+///
 /// Add Task helper
 ///
 Template.add_task.helpers({
@@ -222,6 +221,9 @@ Template.item.events({
     'change .js-checked': function (event) {// set status of task by checking box
         var id = this._id;
         Meteor.call('checkedTask', id);
+    },
+    'hover .js-update-task-form': function () {
+        $('[data-toggle=tooltip]').tooltip();
     }
 });
 
@@ -231,5 +233,6 @@ Template.item.events({
 Template.highPriorityCount.events({
    'click .js-go-to-high-priority': function(){// Show only high priority tasks in Task list
        Session.set('priority', "High");
+       // FIXME - This is counting completed tasks in count. Fix so it doesn't count completed High Priority.
    }
 });

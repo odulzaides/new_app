@@ -72,6 +72,7 @@ ul {
     padding-top:1rem;
     text-align:center;
 }
+
 .task-list td{
     word-wrap: break-word;
     /*width:auto;*/
@@ -81,6 +82,22 @@ ul {
 .list-info {
     width: 18%;
     padding: 1.4em;
+
+}
+
+.list-info:first-child {
+    padding-top:4rem;
+}
+.list-info  div{
+
+    height:auto ;
+    border-bottom:1px solid rgba(0, 102, 0, 0.4);
+}
+.list-info h4 {
+    margin-bottom:1rem;
+}
+.list-info ul{
+    padding-left:0;
 }
 
 .complete {

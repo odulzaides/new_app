@@ -3,7 +3,7 @@
  -->
 <template name="item_list">
     <div class="container">
-        <h2 class=" task-header bottom-margin">Todo List for  {{getUser.username}}</h2>
+        <h2 class=" task-header bottom-margin">Todo List for  {{getUser}}</h2>
 
         <div class="flex-container">
             <!--
@@ -25,7 +25,7 @@
             -->
             <div class=" task-list border-shadow">
                 <!--FIXME - set an If statement here so that the word priority appears only when L,M, or H is selected-->
-                <h3>Todo List - Showing {{sorterPriority}} tasks for {{getUser}}</h3>
+                <h3>Todo List - Showing {{sorterPriority}}  for {{getUser}}</h3>
 
                 <table class="table ">
                     <thead>
@@ -50,6 +50,7 @@
             -->
             <!--TODO - Make this section a due today section-->
             <div class=" list-info border-shadow">
+                <p style="padding-top:5rem;"></p>
                 <div>
                     <h4>Past Due</h4>
 
@@ -94,7 +95,7 @@
         </td>
         <td>
             <a href="#"
-               class="js-update-task-form   {{isComplete}}">
+               class="js-update-task-form {{isComplete}}"  data-toggle="tooltip" title={{notes}}>
                 {{task}}
             </a>
         </td>
