@@ -1,6 +1,10 @@
 <template name="due">
 
     <li>
-        {{task}}
+       <a href="#"
+               class="js-update-task-form {{isComplete}}"  data-toggle="tooltip" title={{notes}}>
+                {{task}}
+            </a>
+        <!--{{task}}-->
     </li>
 </template>

@@ -9,13 +9,18 @@ Session.set('priority', "Pending");
 
 //  Format date for templates
 Template.registerHelper('formatDate', function (date) {
-    var formattedDate = date.toLocaleString('en-us',{
-            //"weekday":"short", //   TODO - set to show only weekday if it is THIS week.
-            "day":"numeric",
-            "month": "numeric"
-        }
-    );
-    return formattedDate;
+    // var formattedDate = date.toLocaleString('en-us',{
+    //         //"weekday":"short", //   TODO - set to show only weekday if it is THIS week.
+    //         "day":"numeric",
+    //         "month": "numeric"
+    //     }
+    var date, d, m;
+    date = date;
+    d = date.getDate();
+    m = date.getMonth();
+    return m+"/"+d;
+    // );
+    // return formattedDate;
 });
 
 Template.registerHelper('sorterPriority', function () {
