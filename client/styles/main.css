@@ -66,7 +66,7 @@ ul {
 }
 
 .task-list {
-    width: 60%;
+    width: 61%;
     padding: 1.4em;
 }
 .task-list table{
@@ -104,19 +104,31 @@ ul {
     margin-bottom:1rem;
 }
 .list-info ul{
-    padding-left:1.5rem;
-    /*list-style: circle;*/
+    padding-left:1.1rem;
+    overflow:hidden;
+    text-overlow: ellipsis;
 }
+
 
 .complete {
     color: lightslategray;
     text-decoration: line-through;
 }
 
-
 /*  Task Table */
 .table{
  table-layout: fixed;
 }
 .table th{
-    padding-left:1rem;}
+    padding-left:1rem;
+    }
+
+    /* Right Sidebar */
+
+.high-priority a{
+    color:c2c299;
+}
+
+.high-priority span {
+    background: #99c299;
+}

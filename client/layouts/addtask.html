@@ -1,7 +1,5 @@
 <template name="add_task">
 
-
-<!--{{>sorter}}-->
     <!-- »»»»»»»»»»»»»» Add Task Modal ««««««««««««« -->
     <div class="modal fade"
          id="task_add_form">
@@ -42,14 +40,9 @@
                                 class="btn btn-brand "
                                 id="add-task">Add Task
                         </button>
-
                     </form>
                 </div>
                 <div class="modal-footer">
-
-                    <button class="btn btn-warning "
-                            data-dismiss="modal">cancel
-                    </button>
                 </div>
             </div>
         </div>
@@ -66,7 +59,6 @@
                 </div>
                 <div class="modal-body">
                     Create an account or login to create or edit tasks
-
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-warning"
@@ -130,6 +122,36 @@
                     <button class="btn btn-warning"
                             data-dismiss="modal">cancel
                     </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--»»»»»»»»»»» Info Modal ««««««««««««««-->
+     <div class="modal fade"
+         id="task_info_form">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header brand-color">
+                    <div class="modal-title">
+                        <h3>{{#each update}} {{task}} {{/each}}</h3>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <form class="form form-inline js-update-task">
+                        {{#each update}}
+                            <div class="">
+                                <textarea value="{{notes}}"
+                                          name="notes"
+                                          id="notes"
+                                          cols="50"
+                                          rows="7"></textarea>
+                            </div>
+                        {{/each}}
+                        
+                    </form>
+                </div>
+                <div class="modal-footer">
                 </div>
             </div>
         </div>

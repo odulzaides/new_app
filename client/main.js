@@ -8,19 +8,13 @@ Session.set('priority', "Pending");
 
 
 //  Format date for templates
-Template.registerHelper('formatDate', function (date) {
-    // var formattedDate = date.toLocaleString('en-us',{
-    //         //"weekday":"short", //   TODO - set to show only weekday if it is THIS week.
-    //         "day":"numeric",
-    //         "month": "numeric"
-    //     }
+Template.registerHelper('formatDate', function (date) {// put date in mm/dd format
     var date, d, m;
     date = date;
     d = date.getDate();
     m = date.getMonth();
     return m+"/"+d;
-    // );
-    // return formattedDate;
+    
 });
 
 Template.registerHelper('sorterPriority', function () {
@@ -157,6 +151,13 @@ Template.add_task.helpers({
             var task = Items.find({_id: id});
             return task;
         }
+    },
+    info: function () {// Get selected Task
+        if (Session.get('id')) {
+            var id = Session.get('id');
+            var task = Items.find({_id: id});
+            return task;
+        }
     }
 });
 
@@ -232,8 +233,8 @@ Template.item.events({
         var id = this._id;
         Meteor.call('checkedTask', id);
     },
-    'hover .js-update-task-form': function () {
-        $('[data-toggle=tooltip]').tooltip();
+    'mouseover .js-show-info': function () {
+         $("#task_info_form").modal('show');// Show task to edit in modal
     }
 });
 
