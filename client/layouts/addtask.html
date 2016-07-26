@@ -58,12 +58,15 @@
                     </div>
                 </div>
                 <div class="modal-body">
-                    Create an account or login to create or edit tasks
+                    You must be logged in to add tasks
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-warning"
-                            data-dismiss="modal">cancel
+                    <button class="btn btn-brand">
+                        {{> loginButtons}}
+                            <!--data-dismiss="modal">cancel-->
                     </button>
+
+
                 </div>
             </div>
         </div>
@@ -134,12 +137,12 @@
             <div class="modal-content">
                 <div class="modal-header brand-color">
                     <div class="modal-title">
-                        <h3>{{#each update}} {{task}} {{/each}}</h3>
+                        <h3>{{#each info}} {{task}} {{/each}}</h3>
                     </div>
                 </div>
                 <div class="modal-body">
                     <form class="form form-inline js-update-task">
-                        {{#each update}}
+                        {{#each info}}
                             <div class="">
                                 <textarea value="{{notes}}"
                                           name="notes"

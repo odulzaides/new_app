@@ -11,7 +11,7 @@ a, .due, input, textarea {
     color: rgba(148, 148, 148, 1);
 }
 
-.navbar, .navbar-default, .btn-brand {
+.navbar, .navbar-default, .btn-brand,#login-buttons-password  {
     background-color: rgba(0, 102, 0, 0.4);
 
 }
@@ -103,7 +103,7 @@ ul {
 .list-info h4 {
     margin-bottom:1rem;
 }
-.list-info ul{
+.list-info ul {
     padding-left:1.1rem;
     overflow:hidden;
     text-overlow: ellipsis;
