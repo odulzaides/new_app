@@ -9,19 +9,19 @@ Template.item_list.helpers({
                     break;
 
                 case "Pending":
-                    return Items.find({checked: false});
+                    return Items.find({checked: false}, {sort:{due:1}});
                     break;
 
                 case "Low":
-                    return Items.find({owner: user, "priority": "Low", checked: false}, {sort: {"created": -1}});
+                    return Items.find({owner: user, "priority": "Low", checked: false}, {sort: {"due": 1}});
                     break;
 
                 case "Medium":
-                    return Items.find({owner: user, "priority": "Medium", checked: false}, {sort: {"created": -1}});
+                    return Items.find({owner: user, "priority": "Medium", checked: false}, {sort: {"due": 1}});
                     break;
 
                 case "High":
-                    return Items.find({owner: user, "priority": "High", checked: false}, {sort: {"created": -1}});
+                    return Items.find({owner: user, "priority": "High", checked: false}, {sort: {"due": 1}});
                     break;
 
                 case "Completed":

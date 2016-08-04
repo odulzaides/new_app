@@ -4,7 +4,7 @@
 <template name="item_list">
     <div class="container">
         <h2 class=" task-header bottom-margin">Todo List for  {{getUser}}</h2>
-
+<!-- TODO - Fix username display-->
         <div class="flex-container">
             <!--
                 Left-side Task sorter
@@ -91,7 +91,7 @@
         Item Template
  -->
 <template name="item">
-    <tr>
+    <tr> <!--TODO set class according to priority-->
         <td>
             <input class=" js-checked col-md-1"
                    id="checked"
@@ -108,10 +108,11 @@
              data-content="{{notes}}"></span>
         </td>
         <td>
-            {{formatDate due}}
+            {{ formatDate due}}
         </td>
         <td>
             {{priority}}
+
         </td>
         <td class="delete">
             <a href="#"

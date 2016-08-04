@@ -3,7 +3,7 @@ Template.registerHelper('formatDate', function (date) {// put date in mm/dd form
     var date, d, m;
     date = date;
     d = date.getDate();
-    m = date.getMonth();
+    m = date.getMonth()+1;
     return m+"/"+d;
 
 });
