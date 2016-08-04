@@ -1,12 +1,14 @@
 Template.item.helpers({
-    isComplete: function () {// Strike out text if item is complete
+    isComplete: function () {// Set class according to status
         return this.checked ? 'complete' : '';
     },
     isChecked: function () {
         return this.checked ? 'checked' : false;
+    },
+    isPriority: function(){
+        return this.priority;
     }
 });
-
 
 /// item Events
 //
@@ -24,5 +26,10 @@ Template.item.events({
         Session.set('id', id);
         //console.log(id);
         $("#task_info_form").modal('show');// Show task to edit in modal
-    }
+    },
+    //'load body' :function(){
+    //
+    //        var priorityClass = $('#prioritySet').html();
+    //        $('#taskRow').addClass(priorityClass);
+    //    }
 });

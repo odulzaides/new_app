@@ -34,19 +34,15 @@
                 <table class="table ">
                     <thead>
                     <th>√</th>
-                    <th style="width:34rem;">Task</th>
-                    <th>Due</th>
+                    <th style="width:28rem;">Task</th>
+                    <th > </th>
+                    <th style="padding-left:0;">Due</th>
                     <th>Priority</th>
                     </thead>
                     <tbody>
                     {{#each items}} {{> item}} {{/each}}
                     </tbody>
                 </table>
-                <!--<a href="#"
-                   style="color:rgba(0,102,0,0.4);margin-bottom:80%; "
-                   class="js-add-task-form"
-                   id="add-task">Add Task</a>-->
-
                 <div style="height:10%;color:transparent">Text to make margin</div>
             </div>
             <!--
@@ -55,9 +51,12 @@
             <!--TODO - add a count() for each section-->
             <div class=" list-info border-shadow">
                 <p style="padding:25px;"></p>
-                <ul>
+
+                <div>
+                    <ul>
                     {{> highPriorityCount}}
-                </ul>
+                    </ul>
+                </div>
                 <p style="padding-top:1rem;"></p>
                 
                 <div>
@@ -91,7 +90,7 @@
         Item Template
  -->
 <template name="item">
-    <tr> <!--TODO set class according to priority-->
+    <tr id="taskRow"> <!--TODO set class according to priority-->
         <td>
             <input class=" js-checked col-md-1"
                    id="checked"
@@ -101,16 +100,18 @@
         </td>
         <td>
             <a href="#"
-               class="js-update-task-form {{isComplete}}"  >
+               class="js-update-task-form {{isComplete}} {{isPriority}}"  >
                 {{task}}
             </a>
-             <span class="glyphicon glyphicon-info-sign js-show-info" 
-             data-content="{{notes}}"></span>
         </td>
         <td>
+            <span class="glyphicon glyphicon-info-sign js-show-info"
+                  data-content="{{notes}}"></span>
+        </td>
+        <td style="width:100%">
             {{ formatDate due}}
         </td>
-        <td>
+        <td id="prioritySet">
             {{priority}}
 
         </td>

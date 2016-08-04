@@ -16,8 +16,8 @@ Template.item_list.helpers({
                     return Items.find({owner: user, "priority": "Low", checked: false}, {sort: {"due": 1}});
                     break;
 
-                case "Medium":
-                    return Items.find({owner: user, "priority": "Medium", checked: false}, {sort: {"due": 1}});
+                case "Med":
+                    return Items.find({owner: user, "priority": "Med", checked: false}, {sort: {"due": 1}});
                     break;
 
                 case "High":

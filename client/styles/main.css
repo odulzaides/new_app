@@ -3,6 +3,7 @@
 body {
     color: rgba(0, 102, 0, 0.4);
     background: white;
+    font-size:1.3rem;
 }
 h1, h2, h3, h4{
     margin-bottom:4.5rem;
@@ -100,19 +101,18 @@ ul {
     height:auto ;
     border-bottom:1px solid rgba(0, 102, 0, 0.4);
 }
-.list-info h4 {
+.list-info h4, .list-info h5{
     margin-bottom:1rem;
+    font-size:1.3rem;
+}
+.list-info h5 {
+    margin-left: 0;
+    width:100%;
 }
 .list-info ul {
     padding-left:1.1rem;
     overflow:hidden;
     text-overlow: ellipsis;
-}
-
-
-.complete {
-    color: lightslategray;
-    text-decoration: line-through;
 }
 
 /*  Task Table */
@@ -129,7 +129,28 @@ ul {
     color:#c2c299;
 }
 
-.high-priority span {
-    background: #99c299;
+/*  Set class according to priority or whether it's complete    */
+.complete {
+    color: lightslategray;
+    text-decoration: line-through;
+}
+
+.Low{
+    border-radius:2px;
+    padding:.4rem;
+    color:rgba(0, 102, 0, 0.4);
+}
+
+.Med{
+    color:orange;
+    border-radius:2px;
+    padding:.4rem;
+}
+
+.High  {
+    background: rgba(255,99,71, 1);
+    color:#99c299;
+    border-radius:2px;
+    padding:.2rem .5rem .2rem .5rem;
 
 }
