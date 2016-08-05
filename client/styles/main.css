@@ -200,8 +200,11 @@ margin:0;
 #dueToday a{
     color:rgba(223,125,30, 0.8);
 }
-/*.High > span{*/
-    /*border:1px solid rgba(223,125,30, 0.8);*/
-    /*border-radius:2px;*/
-    /*padding:0 !important;*/
-/*}*/
+
+.modal-body > h4 {
+    margin:1rem;
+}
+
+.modal-body ul {
+    list-style: inside;
+}

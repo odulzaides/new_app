@@ -18,5 +18,8 @@ Template.layout.events({ // These were the body events
     },
     'change #priority_sorter': function (event, template) {
         Session.setPersistent('priority', template.find('#priority_sorter').value);
+    },
+    'click .js-show-help-modal': function (event) {
+        $('#site_info_modal').modal('show');
     }
 });

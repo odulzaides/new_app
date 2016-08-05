@@ -26,10 +26,5 @@ Template.item.events({
         Session.set('id', id);
         //console.log(id);
         $("#task_info_form").modal('show');// Show task to edit in modal
-    },
-    //'load body' :function(){
-    //
-    //        var priorityClass = $('#prioritySet').html();
-    //        $('#taskRow').addClass(priorityClass);
-    //    }
+    }
 });
