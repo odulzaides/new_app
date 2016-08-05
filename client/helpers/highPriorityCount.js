@@ -3,8 +3,10 @@ Template.highPriorityCount.helpers({
 
         if (Meteor.user()) {
             //console.log("I'm in highPriorityCount " + Session.get('user')._id);
+            var today = new Date();
+            today.setHours(0,0,0,0);
             var user = Meteor.user()._id;
-            return Items.find({owner: user, "priority": "High", checked:false}).count();
+            return Items.find({owner: user, due:today,"priority": "High", checked:false}).count();
         }
 
     }

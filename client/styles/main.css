@@ -5,6 +5,10 @@ body {
     background: white;
     font-size:1.3rem;
 }
+.table td  {
+    padding-top:8px !important;
+    padding-bottom:8px !important;
+}
 h1, h2, h3, h4{
     margin-bottom:4.5rem;
 }
@@ -12,6 +16,11 @@ a, .due, input, textarea {
     color: rgba(148, 148, 148, 1);
 }
 
+.table > tbody > tr > td{
+    padding:8px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 .navbar, .navbar-default, .btn-brand,#login-buttons-password  {
     background-color: rgba(0, 102, 0, 0.4);
 
@@ -20,6 +29,10 @@ a, .due, input, textarea {
 .brand-color {
     background-color: rgba(0, 102, 0, 0.4);
     color: rgba(0, 102, 0, 0.4);
+}
+.danger-color {
+    background: rgba(255,99,71, .9);
+    color:#040;
 }
 
 .top-margin {
@@ -30,7 +43,6 @@ ul {
     list-style: none;
     /*text-align:left;*/
 }
-
 /*	Common style effects section*/
 .border-shadow {
     border: 1px none transparent;
@@ -82,8 +94,20 @@ ul {
 }
 
 .task-list td{
+    white-space: nowrap;
     word-wrap: break-word;
-    /*width:auto;*/
+    overflow:hidden;
+    text-overlow: ellipsis;
+    after:
+}
+
+.modal-content > modal-title {
+    /*font-size: 1rem;*/
+    /*height:20px;*/
+    /*overflow:hidden;*/
+    /*white-space: nowrap;*/
+    /*text-overflow-ellipsis: ellipsis;*/
+    color:#fdf;
 }
 
 /*      Right-side  */
@@ -97,7 +121,7 @@ ul {
     padding-top:3.9rem;
 }
 .list-info  div{
-
+margin:0;
     height:auto ;
     border-bottom:1px solid rgba(0, 102, 0, 0.4);
 }
@@ -110,9 +134,11 @@ ul {
     width:100%;
 }
 .list-info ul {
+    list-style: none;
     padding-left:1.1rem;
     overflow:hidden;
     text-overlow: ellipsis;
+    white-space: nowrap;
 }
 
 /*  Task Table */
@@ -125,9 +151,19 @@ ul {
 
     /* Right Sidebar */
 
-.high-priority a{
+.high-priority  {
     color:#c2c299;
+    position:relative;
+    left:0;
+    /*margin-left:0;*/
+    /*margin-right:5px;*/
+    /*padding-left:0;*/
+
+
+
 }
+
+/*      End of Right pane Styling   */
 
 /*  Set class according to priority or whether it's complete    */
 .complete {
@@ -138,19 +174,34 @@ ul {
 .Low{
     border-radius:2px;
     padding:.4rem;
+    /*border:.5px solid rgba(0, 102, 0, 0.4);*/
     color:rgba(0, 102, 0, 0.4);
 }
 
 .Med{
-    color:orange;
+    color:rgba(223,125,30, 0.8);
+    /*border:.5px solid rgba(223,125,30, 0.8);*/
     border-radius:2px;
     padding:.4rem;
 }
 
+
 .High  {
-    background: rgba(255,99,71, 1);
-    color:#99c299;
-    border-radius:2px;
-    padding:.2rem .5rem .2rem .5rem;
+    color: rgba(255,99,71, .9);
+    padding:.4rem;
+
 
 }
+
+#pastDue a{
+    color: rgba(255,99,71, .9);
+    font-weight: 700%;
+}
+#dueToday a{
+    color:rgba(223,125,30, 0.8);
+}
+/*.High > span{*/
+    /*border:1px solid rgba(223,125,30, 0.8);*/
+    /*border-radius:2px;*/
+    /*padding:0 !important;*/
+/*}*/

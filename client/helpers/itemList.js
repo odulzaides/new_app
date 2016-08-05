@@ -35,8 +35,8 @@ Template.item_list.helpers({
         var today = new Date();
         today.setHours(0,0,0,0);
         return Items.find(
-            {due:today},
-            {sort:{due:-1}}
+            {due:today, checked:false},
+            {sort:{due:1}}
         ).fetch();
     },
     pastDue: function(){// Tasks due today
@@ -46,7 +46,7 @@ Template.item_list.helpers({
         beforeToday.setHours(0,0,0,0);
         beforeToday.setDate(today.getDate()-1);
         return Items.find(
-            {due:{$not:{$gt: beforeToday}}},
+            {due:{$not:{$gt: beforeToday}}, checked:false},
             {sort:{due:-1}}
         ).fetch();
     },
@@ -57,8 +57,8 @@ Template.item_list.helpers({
         tomorrow.setHours(0,0,0,0);
         tomorrow.setDate(today.getDate()+1);
         return Items.find(
-            {due:{$gt: today}},
-            {sort:{due:-1}}
+            {due:{$gt: today}, checked:false},
+            {sort:{due:1}}
         ).fetch();
     }
 });

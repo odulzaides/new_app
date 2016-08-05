@@ -1,10 +1,8 @@
 <template name="highPriorityCount">
-    <li>
-            <h5>
-            <a href="#"
-               class="js-go-to-high-priority high-priority" style="color:#69a569;">
-           High Priority due: <span class="badge">{{highPriorityTasks}}</span> 
-        </a>
-        </h5>
-    </li>
+
+    <a href="#"
+               class="js-go-to-high-priority"  data-tip="Click this to show High Priority tasks" style="color:#69a569;">
+           High Priority <br>Due Today: <span class="badge danger-color">{{highPriorityTasks}}</span>
+            </a>
+
 </template>
