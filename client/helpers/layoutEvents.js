@@ -1,11 +1,27 @@
 /// Layout events
 ///
 Template.layout.events({ // These were the body events
-    'click .js-add-task-form': function (event) {
-        if (!Meteor.user()) {
-            $("#join_or_login").modal('show');
-        } else {
-            $("#task_add_form").modal('show');
+
+    // TODO: Change the way ypu enter tasks.
+    /*       Try to setup so:
+                1. When you hit enter it creates a new task and lists it.
+                2. Once it is on task list change so you can enter #Datepicker right on item.
+                3. Adjust priority as well
+            ** One thing to check out is how to change field onblur.
+                Need to change the way Due, Priority behave when clicked.
+            *** Once done refresh README by adding changelog. 
+                Add new parts to help modal. 
+*/
+    'keypress .js-add-task-form': function (event) {
+        if (event.which === 13) {
+            if (!Meteor.user()) {
+                $("#join_or_login").modal('show');
+            } else {
+                let newTaskText = $('#add-task-text');
+                $("#task_add_form").modal('show');
+                $('#text').val(newTaskText.val());
+                newTaskText.val('');           
+            }
         }
     },
     'click .js-update-task-form': function (event) {
