@@ -29,9 +29,13 @@ Template.add_task.events({
         var priority = event.target.priority.value;
         var notes = event.target.notes.value;
         var status = false;
-
+        // Add task to collection
         Meteor.call("addTask", task, due, priority, notes, status);
+        // Hide modal
         $("#task_add_form").modal('hide');
+        // clear fields
+        $('#text , #my-datepicker, #notes' ).val('');
+        document.getElementById('priority').selectedIndex = "0";
     },
     'submit .js-update-task': function (event) {
         event.preventDefault();// Do not reload form
