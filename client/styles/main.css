@@ -149,6 +149,13 @@ margin:0;
     padding-left:1rem;
     }
 
+.js-task-due{
+    width:100%;
+}
+
+.hide {
+    display:none;
+}
     /* Right Sidebar */
 
 .high-priority  {

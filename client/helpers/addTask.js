@@ -23,7 +23,11 @@ Template.add_task.helpers({
 
 Template.add_task.events({
     'submit .js-add-task': function (event) {
-        event.preventDefault();
+            $("#task_add_form").on('show', function() {
+            $(this).find('input').click();
+        });
+        event.preventDefault();    
+        $('#my-datepicker').click();
         var task = event.target.text.value;
         var due = $('#my-datepicker').val();
         var priority = event.target.priority.value;

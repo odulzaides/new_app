@@ -2,7 +2,7 @@
 ///
 Template.layout.events({ // These were the body events
 
-    // TODO: Change the way ypu enter tasks.
+    // TODO: Change the way you enter tasks.
     /*       Try to setup so:
                 1. When you hit enter it creates a new task and lists it.
                 2. Once it is on task list change so you can enter #Datepicker right on item.
@@ -13,10 +13,13 @@ Template.layout.events({ // These were the body events
                 Add new parts to help modal. 
 */
     'keypress .js-add-task-form': function (event) {
-        if (event.which === 13) {
+        if (event.which === 13) {   
             if (!Meteor.user()) {
                 $("#join_or_login").modal('show');
             } else {
+                    $("#task_add_form").on('shown.bs.modal', function() {                        
+                    $(this).find('input').focus();
+            });
                 let newTaskText = $('#add-task-text');
                 $("#task_add_form").modal('show');
                 $('#text').val(newTaskText.val());

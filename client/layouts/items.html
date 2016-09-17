@@ -25,12 +25,10 @@
                 <!--    NOTE - add a section totaling the amount of tasks etc.-->
 
                 <h3>Todo List - Showing {{sorterPriority}}  for {{getUser}}</h3>
-            <!--<a href="#"
-                   style="color:rgba(0,102,0,0.4);margin-bottom:80%; "
-                   class="js-add-task-form"
-                   id="add-task">Add Task  
-            </a>-->
+
+           <!--     type new task here submit with enter  -->
             <input type="text" class="js-add-task-form" id="add-task-text" name="add-task-input" value="" placeholder="Start typing" autofocus>
+
          <!-- Help glyph link -->
                    <span class="glyphicon glyphicon-question-sign js-show-help-modal"></span>
                    <p style="padding:10px;"></p>
@@ -114,8 +112,11 @@
             <span class="glyphicon glyphicon-info-sign js-show-info"
                   data-content="{{notes}}"></span>
         </td>
-        <td style="width:100%">
+        <td> <span id="itemDue" 
+        class="js-task-due" >
             {{ formatDate due}}
+            </span>
+            <input class="hide" id="my-datepicker" type="text" value="{{formatDate due}}">
         </td>
         <td id="prioritySet">
             <span class="{{isPriority}}">
